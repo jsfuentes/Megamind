@@ -67,3 +67,6 @@ npm-debug.log
 */config/*.secret.*
 */.mdx-data
 .env
+
+# Electron Builds
+*/build

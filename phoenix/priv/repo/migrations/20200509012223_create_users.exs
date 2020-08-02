@@ -7,7 +7,7 @@ defmodule ReactPhoenix.Repo.Migrations.CreateUsers do
       add :picture, :string
       add :email, :string
       add :locale, :string
-      add :gid, :integer
+      add :gid, :string
       add :gaccess_token, :string
 
       timestamps()

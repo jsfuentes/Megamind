@@ -3,12 +3,12 @@ defmodule ReactPhoenix.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :email, :string
-    field :gaccess_token, :string
-    field :gid, :string
-    field :locale, :string
     field :name, :string
     field :picture, :string
+    field :email, :string
+    field :locale, :string
+    field :gaccess_token, :string
+    field :gid, :string
 
     timestamps()
   end

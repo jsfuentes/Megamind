@@ -2,6 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
+Button.propTypes = {
+  variant: PropTypes.string,
+  size: PropTypes.string,
+  fullWidth: PropTypes.bool,
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  variant: "black",
+  disabled: false,
+};
+
 export default function Button(props) {
   const style = classNames({
     "rounded w-auto cursor-pointer outline-none flex items-center justify-center relative": true,
@@ -21,17 +35,3 @@ export default function Button(props) {
     </button>
   );
 }
-
-Button.propTypes = {
-  variant: PropTypes.string,
-  size: PropTypes.string,
-  fullWidth: PropTypes.bool,
-  onClick: PropTypes.func,
-  children: PropTypes.node,
-  disabled: PropTypes.bool,
-};
-
-Button.defaultProps = {
-  variant: "black",
-  disabled: false,
-};

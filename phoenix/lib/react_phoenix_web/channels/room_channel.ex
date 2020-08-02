@@ -4,7 +4,7 @@ defmodule ReactPhoenixWeb.RoomChannel do
   alias ReactPhoenixWeb.Scheduler
 
   def join("room:lobby", _message, socket) do
-    send(self(), :after_join)
+    # send(self(), :after_join)
     {:ok, :hiii, socket}
   end
 

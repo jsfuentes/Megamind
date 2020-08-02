@@ -106,6 +106,7 @@ module.exports = (env, options) => ({
     modules: [path.resolve("./node_modules")],
     alias: {
       src: path.resolve("./src"),
+      conf: path.resolve("./conf"),
     },
   },
 });

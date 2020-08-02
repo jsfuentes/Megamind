@@ -7,6 +7,7 @@ defmodule ReactPhoenix.Accounts do
   alias ReactPhoenix.Repo
 
   alias ReactPhoenix.Accounts.User
+  require Logger
 
   @doc """
   Returns the list of users.
@@ -54,6 +55,7 @@ defmodule ReactPhoenix.Accounts do
 
     %User{}
     |> User.changeset(attrs)
+    |> IO.inspect
     |> Repo.insert()
   end
 
@@ -68,8 +70,10 @@ defmodule ReactPhoenix.Accounts do
 
   def fetch_google_profile(gaccess_token) do
     url = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" <> gaccess_token
+    Logger.info(url)
     %HTTPoison.Response{status_code: 200, body: body} = HTTPoison.get!(url)
     profile = Jason.decode!(body)
+
     %{
       gid: profile["id"],
       gaccess_token: gaccess_token,
