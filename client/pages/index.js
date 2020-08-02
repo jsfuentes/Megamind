@@ -3,23 +3,18 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <div className="container">
-      
       <main>
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
         <p className="description">
           Get started by editing <code>pages/index.js</code>
         </p>
-
         <div className="grid">
         <Link href="/decklistspage">
           <a className="card">
             <h3>Deck&rarr;</h3>
-            
             <a>deck</a>
-        
           </a>
           </Link>
         </div>
