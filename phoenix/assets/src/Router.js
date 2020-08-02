@@ -4,14 +4,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DailyIframe from "@daily-co/daily-js";
 
+import BrowserUnsupported from "src/components/BrowserUnsupported/BrowserUnsupported";
 import Loading from "src/components/Loading.js";
 import ErrorBoundary from "src/components/ErrorBoundary";
-import UserRoute from "src/components/UserRoute";
 
 import Landing from "src/pages/Landing";
 import my404 from "src/pages/my404";
 import Login from "src/pages/Login";
-import Home from "src/pages/Home";
+import Test from "src/pages/Test";
 import UserContext from "src/contexts/UserContext.js";
 
 toast.configure({
@@ -31,7 +31,7 @@ export default function Router() {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Landing} />
-            <UserRoute exact path="/home" component={Home} />
+            <Route exact path="/test" component={Test} />
             <Route component={my404} />
           </Switch>
         </BrowserRouter>

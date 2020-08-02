@@ -14,7 +14,7 @@ defmodule ReactPhoenix.Application do
       ReactPhoenixWeb.Endpoint,
       ReactPhoenixWeb.Presence,
       # Starts a worker by calling: ReactPhoenix.Worker.start_link(arg)
-      # {ReactPhoenixWeb.Scheduler, []},
+      {ReactPhoenixWeb.Scheduler, []},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

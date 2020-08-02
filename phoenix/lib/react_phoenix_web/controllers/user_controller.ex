@@ -13,12 +13,11 @@ defmodule ReactPhoenixWeb.UserController do
 
   def create(conn, %{"user" => %{"gaccess_token"=> gaccess_token}}) do
     with {:ok, %User{} = user} <- Accounts.get_create_google_user(gaccess_token) do
-      IO.puts "USER GOT OR CREATED"
+      IO.puts "USER CREATED"
       IO.inspect user
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.user_path(conn, :show, user))
-      |> put_session(:user_id, user.id)
       |> render("show.json", user: user)
     end
   end
@@ -42,12 +41,5 @@ defmodule ReactPhoenixWeb.UserController do
     with {:ok, %User{}} <- Accounts.delete_user(user) do
       send_resp(conn, :no_content, "")
     end
-  end
-
-  def me(conn, _params) do
-    IO.puts("ME")
-    user = conn.assigns[:current_user]
-    IO.inspect user
-    render(conn, "show.json", user: user)
   end
 end
