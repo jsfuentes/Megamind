@@ -1,6 +1,6 @@
 import FlashCard from './flashcard'
 
-export default function deck() {
+export default function Deck(props) {
 
   var data = {cards: [
     {FrontTitle: "Question" , FrontContent: "What is Abdominal Aortic Aneurysm", BackTitle: "Answer", BackContent: "An abdominal aortic aneurysm (AAA) is a swelling (aneurysm) of the aorta – the main blood vessel that leads away from the heart, down through the abdomen to the rest of the body." },
@@ -20,7 +20,8 @@ export default function deck() {
     );
   });
       return (
-        <div>
+        <div id = {props.title}>
+          <p>{props.title}</p>
           <FlashCard FrontTitle = "Poop" FrontContent = "What is Poop" BackTitle = "POOP" BackContent = "POOP POOP POOP"></FlashCard>
           <FlashCard FrontTitle = "sdaada" FrontContent = "Whatada is Poop" BackTitle = "ada" BackContent = "POOP POOP adaPOOP"></FlashCard>
           {items}
