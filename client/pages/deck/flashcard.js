@@ -5,6 +5,12 @@ const initialState = {
     side : true
 }
 
+function init(initialState) {
+    return {
+        side : initialState.side
+    };
+}
+
 function reducer(state, action) {
     switch (action.type) {
         case "flip_to_front":
@@ -15,6 +21,8 @@ function reducer(state, action) {
             return {
                 side: false
             };
+        case "reset":
+            return init(action.payload);
         default:
             throw new Error();
     }
@@ -23,13 +31,13 @@ function reducer(state, action) {
 export default function FlashCard(props){
     // if side == true then the FRONT of the card is shown
     // else, the BACK of the card is shown 
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState, init);
 
     return(
         <>
         <div>
             <Card 
-            style={{ width: '18rem'}, {"borderStyle":"solid"}}
+            style={{ "width" : '18rem' }, { "borderStyle" : "solid" }}
             onClick={() => dispatch({
                 type : state.side ? "flip_to_back" : "flip_to_front"
             })}
@@ -43,6 +51,13 @@ export default function FlashCard(props){
                     </Card.Text>
                 </Card.Body>
             </Card>
+        </div>
+        <div>
+        <button 
+            onClick={() => dispatch({
+                type: "reset", payload: initialState})}>
+            Reset
+        </button>
         </div>
         </>
     );
