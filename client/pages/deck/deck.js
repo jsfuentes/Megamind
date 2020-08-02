@@ -10,13 +10,14 @@ export default function deck() {
   ]}
 
   var items = data['cards'].map(function(cardData){
-    return React.createElement(FlashCard,{
-      FrontTitle: cardData.FrontTitle,
-      FrontContent: cardData.FrontContent,
-      BackTitle: cardData.BackTitle,
-      BackContent: cardData.BackContent
-
-    });
+    return (
+      <FlashCard
+      FrontTitle = {cardData.FrontTitle}
+      FrontContent = {cardData.FrontContent}
+      BackTitle ={cardData.BackTitle}
+      BackContent = {cardData.BackContent}
+      ></FlashCard>
+    );
   });
       return (
         <div>
