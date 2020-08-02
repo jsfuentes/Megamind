@@ -17,6 +17,7 @@
     "react-combine-reducers": "1.0.4",
     "react-dom": "16.13.1",
     "react-google-login": "^5.1.21",
-    "react-toastify": "^6.0.8"
+    "react-toastify": "^6.0.8",
+    "yarn": "^1.22.4"
   }
 }
