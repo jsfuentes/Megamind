@@ -9,7 +9,6 @@ defmodule ReactPhoenix.Accounts.User do
     field :locale, :string
     field :name, :string
     field :picture, :string
-    has_many :questions, ReactPhoenix.Questions.Question
 
     timestamps()
   end
