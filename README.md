@@ -6,7 +6,7 @@ Get the .env file from Jorge and put it in the root directory
 source .env
 ```
 
-## Initial Server Setup
+## Initial Backend Server Setup
 
 ```
 mix deps.get #Install deps
@@ -15,7 +15,7 @@ yarn
 cd ..
 mix phx.server #Start server
 ```
-## Initial Server Setup
+## Initial Client Server Setup
 
 ```
 cd client
