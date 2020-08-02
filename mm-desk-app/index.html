@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <div id="real_heading_component"></div>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8" name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <title>Mega Mind</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  </head>
+  <body>
+    <h1>Mega Mind</h1>
+    <p>A Memory Application</p>
+    <a class="myButton" onclick="nextPage()">Log In</a>
+    <script src="main.js"></script>
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script type="module" src="log_in_component.js"></script>
+
+  </body>
+</html>
