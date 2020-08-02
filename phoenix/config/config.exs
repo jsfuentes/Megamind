@@ -17,7 +17,11 @@ config :react_phoenix, ReactPhoenix.Repo,
   database: System.get_env("DB_DATABASE"),
   hostname: System.get_env("DB_HOSTNAME"),
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 5,
+  ssl: true,
+  ssl_opts: [
+    versions: [:"tlsv1.2"]
+  ]
 
 # Configures the endpoint
 config :react_phoenix, ReactPhoenixWeb.Endpoint,
