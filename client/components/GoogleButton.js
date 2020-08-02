@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import PropTypes from "prop-types";
 import * as Sentry from "@sentry/browser";
+import Router from "next/router";
 
-import conf from "conf";
-import UserContext from "src/contexts/UserContext.js";
-import { axios } from "src/utils/utils.js";
-import Button from "../components/Button";
+import conf from "../conf";
+import UserContext from "../contexts/UserContext.js";
+import { axios } from "../utils/utils.js";
+import Button from "./Button";
 const debug = require("debug")("app:components:GoogleLogin");
 
 GoogleButton.propTypes = {
@@ -27,7 +27,6 @@ GoogleButton.defaultProps = {
 
 //Can set "route" and "msg" with query params
 function GoogleButton(props) {
-  const history = useHistory();
   const { user, setUser } = useContext(UserContext);
 
   //user already exists when clicked as it is disabled when userloading
@@ -65,9 +64,9 @@ function GoogleButton(props) {
       if (props.userCallback) {
         props.userCallback(newUser);
       }
-      if (props.route) {
-        history.push(props.route);
-      }
+      // if (props.route) {
+      //   history.push(props.route);
+      // }
     } catch (err) {
       if (err.response && err.response.status === 401) {
         debug("Unauthorized user");

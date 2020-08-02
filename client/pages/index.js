@@ -1,24 +1,21 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head from "next/head";
+import Link from "next/link";
+
+import GoogleButton from "../components/GoogleButton";
+
 export default function Home() {
   return (
     <div className="container">
       <main>
-        <h1 className="title">
-          Megamind
-        </h1>
-        <p className="description">
-          A memory application
-        </p>
-        <Link href="https://google.com">
-          <a className="card">Login with Google</a>
-        </Link>
+        <h1 className="title">Megamind</h1>
+        <p className="description">A memory application</p>
+        <GoogleButton>Google Login with Popup</GoogleButton>
         <div className="grid">
-        <Link href="/decklistspage">
-          <a className="card">
-            <h3>Deck&rarr;</h3>
-            <a>deck</a>
-          </a>
+          <Link href="/decklistspage">
+            <a className="card">
+              <h3>Deck&rarr;</h3>
+              <a>deck</a>
+            </a>
           </Link>
         </div>
       </main>
@@ -169,5 +166,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
