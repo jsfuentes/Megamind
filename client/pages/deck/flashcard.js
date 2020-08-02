@@ -29,7 +29,7 @@ export default function FlashCard(props){
         <>
         <div>
             <Card 
-            style={{ width: '18rem'}, {"border-style":"solid"}}
+            style={{ width: '18rem'}, {"borderStyle":"solid"}}
             onClick={() => dispatch({
                 type : state.side ? "flip_to_back" : "flip_to_front"
             })}
