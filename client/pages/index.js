@@ -5,11 +5,14 @@ export default function Home() {
     <div className="container">
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Megamind
         </h1>
         <p className="description">
-          Get started by editing <code>pages/index.js</code>
+          A memory application
         </p>
+        <Link href="https://google.com">
+          <a className="card">Login with Google</a>
+        </Link>
         <div className="grid">
         <Link href="/decklistspage">
           <a className="card">
