@@ -1,5 +1,9 @@
 body {
-background-color: #d3d3d3;
+    background-color: #d3d3d3;
+    font-size: 64px;
+    line-height: 1.0625; /* The height Apple used to tighten up the spacing a bit. */
+    font-weight: 600; /* Nice, chunky, bold! */
+    font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
 .container {
