@@ -32,13 +32,10 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    border-radius: .25rem;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .333);
     background-color: white;
     cursor: pointer;
     transform: perspective(1000px) translateY(var(--translate-y, 0));
-    pointer-events : none;
 }
 
 .deck:hover {
