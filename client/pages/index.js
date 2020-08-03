@@ -11,7 +11,7 @@ export default function Home() {
         <p className="description">A memory application</p>
         <GoogleButton>Google Login with Popup</GoogleButton>
         <div className="grid">
-          <Link href="/decklistspage">
+          <Link href="/DecklistApp">
             <a className="card">
               <h3>Deck&rarr;</h3>
               <a>deck</a>
