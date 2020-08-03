@@ -1,33 +1,24 @@
 import React, { useState } from 'react';
-
-import Decklist from '../components/decklist/Decklist'
+import Link from "next/link";
+import decks from '../decks.json'
 
 export default function DecklistApp(props) {
-  const [decks, setDecks] = useState(SAMPLE_DECKLIST)
-  const [flashcards, setFlashcards] = useState(SAMPLE_FLASHCARDS)
       return (
-        <div className="container">
-          <Decklist decks={decks}/>
-        </div>
-      );
-  }
+        <div className="deck-grid">
+        <h1>Decks</h1>
+        {Object.entries(decks).map((value, index) => {
+          return (
+            <div className="deck">
+              <Link href='/DecklistApp/[id]' as={'/DecklistApp/' + value[0]}>
+              <a>{value[1].title}</a>
+              </Link>
+            </div>
+          )
+          })}
+      </div>
+        );
+      }
 
-const SAMPLE_DECKLIST = [
-  {
-   id: 1,
-   title: "Anatomy",
-   subtitle: "POOP",
-   author: "Euano Boobina",
-   card_ids: [1, 2]
-  },
-  {
-  id: 2,
-  title: "Physiology",
-  subtitle: "POOPY",
-  author: "Shakthano Donglehead", 
-  card_ids: [3, 4]
-  } 
-]
 
 const SAMPLE_FLASHCARDS = [
   {
