@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import combineReducers from 'react-combine-reducers';
 
-import Deck from '../deck/Deck'
+import Deck from './Deck'
 
 
 export default function Decklist(props){

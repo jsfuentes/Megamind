@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Decklist from '../components/decklist/Decklist'
+import Decklist from '../components/Decklist'
 
 export default function DecklistApp(props) {
   const [decks, setDecks] = useState(SAMPLE_DECKLIST)
