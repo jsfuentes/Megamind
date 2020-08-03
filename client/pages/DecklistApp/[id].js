@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import decks from '../../decks.json'
+import Flashcardlist from '../../components/Flashcardlist'
 
 export default () => {
   const router = useRouter()
@@ -10,7 +11,7 @@ export default () => {
   return (
     <>
       <h1>{deck.title}</h1>
-      <p>{deck.card_ids}</p>
+      <Flashcardlist deck={deck}></Flashcardlist>
     </>
   )
 }
