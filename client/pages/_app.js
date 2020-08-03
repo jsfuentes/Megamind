@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UserContext from "../contexts/UserContext";
+import "./DecklistApp.css"
 
 export default function App({ Component, pageProps }) {
   const [user, setUser] = useState(null);

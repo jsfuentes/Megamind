@@ -14,9 +14,9 @@ export default function Deck(props){
           <Flashcard
           key = {FlashcardProps.id}
           FrontTitle = {FlashcardProps.FrontTitle}
-          FrontContent = {FlashcardProps.FrontContent}
+          FrontText = {FlashcardProps.FrontText}
           BackTitle ={FlashcardProps.BackTitle}
-          BackContent = {FlashcardProps.BackContent}
+          BackText = {FlashcardProps.BackText}
           ></Flashcard>
         );
       });

@@ -59,18 +59,20 @@ export default function Flashcard(props){
     const [state, dispatch] = useReducer(rootReducerCombined, initialStateCombined);
     return(
         <div
-        className={`card-${state.side.side.localeCompare("front")===0 ? "front" : "back"}`}
-        onClick={() => dispatch({
-          type : state.side.side.localeCompare("front")===0 ? "flip_to_back" : "flip_to_front"
+          className={`card ${state.side.side.localeCompare("front")===0 ? "" : "flip"}`}
+          onClick={() => dispatch({
+            type : state.side.side.localeCompare("front")===0 ? "flip_to_back" : "flip_to_front"
         })}
         >
-          <div
-          className={`card-title-${state.side.side.localeCompare("front")===0 ? "front" : "back"}`}> 
-            {state.side.side.localeCompare("front")===0 ? props.FrontTitle : props.BackTitle}
-          </div>
-          <div
-          className={`card-content-text-${state.side.side.localeCompare("front")===0 ? "front" : "back"}`}> 
-            {state.side.side.localeCompare("front")===0 ? props.FrontContent : props.BackContent}
+          <div className={`${state.side.side.localeCompare("front")===0 ? "front" : "back"}`}>
+            <div
+              className="title"> 
+              {state.side.side.localeCompare("front")===0 ? props.FrontTitle : props.BackTitle}
+            </div>
+            <div
+              className="text"> 
+              {state.side.side.localeCompare("front")===0 ? props.FrontText : props.BackText}
+            </div>
           </div>
         </div>
     );
