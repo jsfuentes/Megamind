@@ -9,7 +9,7 @@ export default function DecklistApp(props) {
         {Object.entries(decks).map((value, index) => {
           return (
             <div className="deck">
-              <Link href='/DecklistApp/[id]' as={'/DecklistApp/' + value[0]}>
+              <Link href='/StudyApp/[id]' as={'/StudyApp/' + value[0]}>
               <a>{value[1].title}</a>
               </Link>
             </div>

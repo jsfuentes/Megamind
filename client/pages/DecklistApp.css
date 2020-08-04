@@ -1,9 +1,10 @@
 body {
-    background-color: #d3d3d3;
+    background-color: black;
     font-size: 64px;
     line-height: 1.0625; /* The height Apple used to tighten up the spacing a bit. */
     font-weight: 600; /* Nice, chunky, bold! */
     font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+    color: white;
 }
 
 html, body {
@@ -14,11 +15,6 @@ html, body {
 .container {
     max-width: 900px;
     margin: 1rem 2rem;
-}
-
-.flashcard-list {
-    height: 100%;
-    width: 100%;
 }
 
 .deck-grid {
@@ -32,37 +28,27 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .333);
-    background-color: white;
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.333);
+    background-color: black;
     cursor: pointer;
     transform: perspective(1000px) translateY(var(--translate-y, 0));
+    color: white;
 }
 
 .deck:hover {
     --translate-y: -2px;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .666);
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, .666);
 }
 
-.card {
+.flashcard {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: fixed;
     border-radius: .25rem;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .333);
-    background-color: white;
-    transform-style: preserve-3d;
-    transition: 150ms;
-    cursor: pointer;
-    transform: perspective(1000px) translateY(var(--translate-y, 0));
-}
-  
-.card:hover {
-    --translate-y: -2px;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .666);
-}
-
-.card .front,
-.card .back {
-    padding: 5rem;
 }

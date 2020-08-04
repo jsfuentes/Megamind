@@ -58,22 +58,28 @@ const [rootReducerCombined, initialStateCombined] = combineReducers({
 export default function Flashcard(props){
     const [state, dispatch] = useReducer(rootReducerCombined, initialStateCombined);
     return(
-        <div
-          className={`card ${state.side.side.localeCompare("front")===0 ? "" : "flip"}`}
-          onClick={() => dispatch({
-            type : state.side.side.localeCompare("front")===0 ? "flip_to_back" : "flip_to_front"
-        })}
-        >
-          <div className={`${state.side.side.localeCompare("front")===0 ? "front" : "back"}`}>
-            <div
-              className="title"> 
+        <>
+        <div className="flashcard">
+          <div className="flashcard-content">
+            <div> 
+              {state.side.side.localeCompare("back")===0 ? props.FrontTitle : null}
+            </div>
+            <div> 
+              {state.side.side.localeCompare("back")===0 ? props.FrontText : null}
+            </div>
+            <div> 
               {state.side.side.localeCompare("front")===0 ? props.FrontTitle : props.BackTitle}
             </div>
-            <div
-              className="text"> 
+            <div> 
               {state.side.side.localeCompare("front")===0 ? props.FrontText : props.BackText}
             </div>
           </div>
+        <button 
+            onClick={() => dispatch({
+                type : state.side.side.localeCompare("front")===0 ? "flip_to_back" : "flip_to_front"
+            })}>Click Me!
+        </button>
         </div>
+        </>
     );
 };

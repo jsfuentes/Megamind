@@ -21,10 +21,10 @@ export default function Flashcardlist(props){
         );
       });
     return(
-        <div className="flashcard-list">
-            {flashcards.map(flashcard => {
-                return flashcard
-            })}
+        <div className="flashcardlist">
+                {flashcards.map(flashcard => {
+                    return flashcard
+                })}
         </div>
     );
 }

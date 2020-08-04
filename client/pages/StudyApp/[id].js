@@ -11,7 +11,9 @@ export default () => {
   return (
     <>
       <h1>{deck.title}</h1>
+      <div className="flashcardlist-wrapper">
       <Flashcardlist deck={deck}></Flashcardlist>
+      </div>
     </>
   )
 }
