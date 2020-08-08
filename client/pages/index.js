@@ -9,7 +9,9 @@ export default function Home() {
       <main>
         <h1 className="title">Megamind</h1>
         <p className="description">A memory application</p>
-        <GoogleButton>Google Login with Popup</GoogleButton>
+        <GoogleButton variant="inverted-black">
+          Google Login with Popup
+        </GoogleButton>
         <div className="grid">
           <Link href="/DecklistApp">
             <a className="card">

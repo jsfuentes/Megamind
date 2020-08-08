@@ -19,8 +19,8 @@ Button.defaultProps = {
 export default function Button(props) {
   const style = classNames({
     "rounded w-auto cursor-pointer outline-none flex items-center justify-center relative": true,
-    "font-medium px-5 py-1.5 text-lg": !props.size,
-    "font-semibold py-2 px-7 text-xl": props.size === "large",
+    "font-medium px-5 py-2 text-lg": !props.size,
+    "font-semibold py-2 px-6 text-xl": props.size === "large",
     "text-white bg-pink-800 font-semibold": props.variant === "pink",
     "text-pink-800 bg-pink-100 hover:bg-pink-150  border-pink-800 border-3":
       props.variant === "inverted-pink",
