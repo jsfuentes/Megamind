@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+
+body {
+  background-color: black;
+  font-size: 64px;
+  line-height: 1.0625; /* The height Apple used to tighten up the spacing a bit. */
+  font-weight: 600; /* Nice, chunky, bold! */
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  color: white;
+}
+
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+.deck-grid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 600px));
+  gap: 5rem;
+}
+
+.deck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.333);
+  background-color: black;
+  cursor: pointer;
+  transform: perspective(1000px) translateY(var(--translate-y, 0));
+  color: white;
+}
+
+.deck:hover {
+  --translate-y: -2px;
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.666);
+}
+
+.flashcard {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  border-radius: 0.25rem;
+}
+
+@tailwind utilities;
