@@ -5,7 +5,7 @@ import decks from '../decks.json'
 export default function DecklistApp(props) {
       return (    
         <div className="deck-grid">
-        <h1>Decks</h1>
+        <h1>Create New Deck</h1>
         {Object.entries(decks).map((value, index) => {
           return (
             <div className="deck">
@@ -16,8 +16,8 @@ export default function DecklistApp(props) {
           )
           })}
           
-          <button onClick={() => window.location.href="/NewDeck"}>
-              Create New Deck
+          <button onClick={() => window.location.href="/DecklistApp"}>
+              POGXD
           </button>
         </div>
         );
