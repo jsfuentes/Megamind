@@ -11,8 +11,10 @@ defmodule ReactPhoenixWeb.QuestionView do
   end
 
   def render("question.json", %{question: question}) do
-    IO.inspect question
-    %{id: question.id,
+    IO.inspect(question)
+
+    %{
+      id: question.id,
       text: question.text,
       user: question.user && render_one(question.user, ReactPhoenixWeb.UserView, "user.json"),
       user_id: question.user_id

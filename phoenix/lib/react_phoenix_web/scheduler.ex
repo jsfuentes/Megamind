@@ -1,4 +1,4 @@
-#Will send messages with a topic for each user_id
+# Will send messages with a topic for each user_id
 defmodule ReactPhoenixWeb.Scheduler do
   use GenServer
   alias ReactPhoenixWeb.Endpoint
@@ -27,8 +27,8 @@ defmodule ReactPhoenixWeb.Scheduler do
   #   IO.puts("SCH: get_room#{id}")
   #   GenServer.call(__MODULE__, {:get_data, id})
   # end
-  
-  #GenServer Functions
+
+  # GenServer Functions
   def init(topic) do
     IO.puts("SCH: init#{topic}")
     body = %{topic: topic, users: []}
@@ -59,47 +59,58 @@ defmodule ReactPhoenixWeb.Scheduler do
     {:reply, newState, newState}
   end
 
-  #only one user
-  def handle_info(:try_schedule, %{topic: topic, users: [{uid, data}]}), do: {:noreply,  %{topic: topic, users: [{uid, data}]}}
+  # only one user
+  def handle_info(:try_schedule, %{topic: topic, users: [{uid, data}]}),
+    do: {:noreply, %{topic: topic, users: [{uid, data}]}}
 
   def handle_info(:try_schedule, %{topic: topic, users: users}) do
     IO.puts("SCH: handle_info:try_schedule MULTI USER")
     shuffledKeys = Enum.map(users, fn {uid, _} -> uid end) |> Enum.shuffle()
-    #need length so can't chain
+    # need length so can't chain
     {firstHalf, secondHalf} = Enum.split(shuffledKeys, div(Enum.count(shuffledKeys), 2))
-    uidToDaily = Enum.zip(firstHalf, secondHalf) |>
-      IO.inspect |>
-      Enum.flat_map(fn {uid1, uid2} -> 
+
+    uidToDaily =
+      Enum.zip(firstHalf, secondHalf)
+      |> IO.inspect()
+      |> Enum.flat_map(fn {uid1, uid2} ->
         dailyRoom = createDailyRoom()
         Endpoint.broadcast!("user:#{uid1}", "new_room", dailyRoom)
         Endpoint.broadcast!("user:#{uid2}", "new_room", dailyRoom)
         [{uid1, dailyRoom}, {uid2, dailyRoom}]
-      end) |>
-      Map.new
+      end)
+      |> Map.new()
 
     IO.puts("NEW USERS:")
-    #can't just use the uidToDaily as users, because there could be an odd number of user
-    users = Enum.map(users, fn {uid, _oldDaily} -> 
-      case Map.fetch(uidToDaily, uid) do 
-        {:ok, newDaily} -> {uid, newDaily}
-        :error -> {uid, %{}}
-      end
-    end) |> IO.inspect
-    
+    # can't just use the uidToDaily as users, because there could be an odd number of user
+    users =
+      Enum.map(users, fn {uid, _oldDaily} ->
+        case Map.fetch(uidToDaily, uid) do
+          {:ok, newDaily} -> {uid, newDaily}
+          :error -> {uid, %{}}
+        end
+      end)
+      |> IO.inspect()
+
     {:noreply, %{topic: topic, users: users}}
   end
 
-  #Helpers
+  # Helpers
   defp createDailyRoom() do
     rawPayload = %{
       privacy: "public"
     }
+
     payload = Jason.encode!(rawPayload)
     url = "https://api.daily.co/v1/rooms"
-    headers = ["Accept": "Application/json; Charset=utf-8", "Content-Type": "Application/json; charset=utf-8", 
-      "Authorization": "Bearer #{Application.fetch_env!(:react_phoenix, :daily_api)}"]
-    %HTTPoison.Response{status_code: 200, body: body} = HTTPoison.post! url, payload, headers
-    IO.puts "CREATED DAILY ROOM"
+
+    headers = [
+      Accept: "Application/json; Charset=utf-8",
+      "Content-Type": "Application/json; charset=utf-8",
+      Authorization: "Bearer #{Application.fetch_env!(:react_phoenix, :daily_api)}"
+    ]
+
+    %HTTPoison.Response{status_code: 200, body: body} = HTTPoison.post!(url, payload, headers)
+    IO.puts("CREATED DAILY ROOM")
     Jason.decode!(body)
   end
 end

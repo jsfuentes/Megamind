@@ -14,7 +14,7 @@ export default function Home() {
           <Link href="/decklistspage">
             <a className="card">
               <h3>Deck&rarr;</h3>
-              <a>deck</a>
+              <div>deck</div>
             </a>
           </Link>
         </div>

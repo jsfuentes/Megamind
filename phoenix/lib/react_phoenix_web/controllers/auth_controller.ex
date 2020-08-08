@@ -3,18 +3,20 @@ defmodule ReactPhoenixWeb.AuthController do
   plug Ueberauth
   alias Ueberauth.Strategy.Helpers
   alias ReactPhoenix.Accounts
-  
+
   def callback(%{assigns: %{ueberauth_failure: _fails}} = conn, _params) do
-    IO.puts "Failed uberauth"
+    IO.puts("Failed uberauth")
+
     conn
     |> put_flash(:error, "Failed to authenticate.")
     |> redirect(to: "/")
   end
 
-  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do 
-    IO.puts "Got uberauth"
-    IO.inspect auth 
-    conn 
+  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+    IO.puts("Got uberauth")
+    IO.inspect(auth)
+
+    conn
     |> put_flash(:info, "Successfully authenticated!")
     |> redirect(to: "/")
   end

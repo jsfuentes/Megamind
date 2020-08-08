@@ -3,7 +3,7 @@ defmodule ReactPhoenixWeb.UserChannel do
 
   def join("user:" <> user_id, payload, socket) do
     if authorized?(payload) do
-      IO.puts "JOIN PERSONAL #{user_id}"
+      IO.puts("JOIN PERSONAL #{user_id}")
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
@@ -19,7 +19,7 @@ defmodule ReactPhoenixWeb.UserChannel do
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (user:lobby).
   def handle_in("shout", payload, socket) do
-    broadcast socket, "shout", payload
+    broadcast(socket, "shout", payload)
     {:noreply, socket}
   end
 

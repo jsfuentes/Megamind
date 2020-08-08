@@ -17,7 +17,7 @@ defmodule ReactPhoenixWeb.Router do
 
   scope "/auth", ReactPhoenixWeb do
     pipe_through :browser
-  
+
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
     post "/:provider/callback", AuthController, :callback

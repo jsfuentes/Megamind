@@ -16,7 +16,7 @@ defmodule ReactPhoenixWeb.ApiController do
     #     password: "guessme",
     #     stooge: "curly"},
     # ]
-    json conn, "Love you baby"
+    json(conn, "Love you baby")
   end
 
   # def join(conn, _params) do
@@ -29,7 +29,7 @@ defmodule ReactPhoenixWeb.ApiController do
   #   url = "https://api.daily.co/v1/rooms"
   #   headers = ["Accept": "Application/json; Charset=utf-8", "Content-Type": "Application/json; charset=utf-8", 
   #     "Authorization": "Bearer #{Application.fetch_env!(:react_phoenix, :daily_api)}"]
-    
+
   #   case HTTPoison.post url, payload, headers do
   #     {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
   #       myBody = Jason.decode!(body)

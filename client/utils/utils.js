@@ -12,4 +12,4 @@ const axiosProd = axiosBase.create({
 
 //use react proxy defined in package.json in development
 //use the baseurl defined above in prod
-export const axios = inProd ? axiosProd : axiosBase;
+export const axios = axiosProd;

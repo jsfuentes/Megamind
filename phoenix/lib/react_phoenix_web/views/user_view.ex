@@ -11,12 +11,14 @@ defmodule ReactPhoenixWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id,
+    %{
+      id: user.id,
       name: user.name,
       picture: user.picture,
       email: user.email,
       locale: user.locale,
       gid: user.gid,
-      gaccess_token: user.gaccess_token}
+      gaccess_token: user.gaccess_token
+    }
   end
 end

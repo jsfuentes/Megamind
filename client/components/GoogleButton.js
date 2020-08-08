@@ -25,6 +25,8 @@ GoogleButton.defaultProps = {
   route: "",
 };
 
+debug(conf.get("GOOGLE_CLIENT_ID"));
+
 //Can set "route" and "msg" with query params
 function GoogleButton(props) {
   const { user, setUser } = useContext(UserContext);
@@ -55,6 +57,7 @@ function GoogleButton(props) {
 
     // debug("GUSER", googleUser, googleUser.accessToken);
     try {
+      debug("AAAA", axios);
       const resp = await axios.post("/api/users", {
         user: { gaccess_token: googleUser.accessToken },
       });

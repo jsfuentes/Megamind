@@ -17,7 +17,7 @@ defmodule ReactPhoenixWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect(params, socket, _connect_info) do
-    IO.puts "Connected UID: " <> params["user_id"]
+    IO.puts("Connected UID: " <> params["user_id"])
     {:ok, assign(socket, :user_id, params["user_id"])}
   end
 
