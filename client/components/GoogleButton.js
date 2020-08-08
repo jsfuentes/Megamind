@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import GoogleLogin from "react-google-login";
 import PropTypes from "prop-types";
 import * as Sentry from "@sentry/browser";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 import conf from "../conf";
 import UserContext from "../contexts/UserContext.js";
@@ -29,6 +29,7 @@ debug(conf.get("GOOGLE_CLIENT_ID"));
 
 //Can set "route" and "msg" with query params
 function GoogleButton(props) {
+  const router = useRouter();
   const { user, setUser } = useContext(UserContext);
 
   //user already exists when clicked as it is disabled when userloading
@@ -55,7 +56,7 @@ function GoogleButton(props) {
       return;
     }
 
-    // debug("GUSER", googleUser, googleUser.accessToken);
+    debug("GUSER", googleUser, googleUser.accessToken);
     try {
       debug("AAAA", axios);
       const resp = await axios.post("/api/users", {
@@ -67,9 +68,9 @@ function GoogleButton(props) {
       if (props.userCallback) {
         props.userCallback(newUser);
       }
-      // if (props.route) {
-      //   history.push(props.route);
-      // }
+      if (props.route) {
+        router.push(props.route);
+      }
     } catch (err) {
       if (err.response && err.response.status === 401) {
         debug("Unauthorized user");
