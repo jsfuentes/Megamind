@@ -10,5 +10,35 @@
         "subtitle": "POOPY",
         "author": "Shakthano Donglehead", 
         "card_ids": [3, 4]
+   },
+   "deck_3" : {
+     "title": "China",
+     "subtitle": "POOPY",
+     "author": "Donald Trump Donglehead", 
+     "card_ids": [1, 4]
+   },
+   "deck_4" : {
+     "title": "China",
+     "subtitle": "POOPY",
+     "author": "Donald Trump Donglehead", 
+     "card_ids": [1, 4]
+   },
+   "deck_5" : {
+     "title": "China",
+     "subtitle": "POOPY",
+     "author": "Donald Trump Donglehead", 
+     "card_ids": [1, 4]
+   },
+   "deck_6" : {
+     "title": "China",
+     "subtitle": "POOPY",
+     "author": "Donald Trump Donglehead", 
+     "card_ids": [1, 4]
+   },
+   "deck_7" : {
+     "title": "China",
+     "subtitle": "POOPY",
+     "author": "Donald Trump Donglehead", 
+     "card_ids": [1, 4]
    }
 } 

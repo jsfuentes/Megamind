@@ -34,6 +34,7 @@ function GoogleButton(props) {
 
   //user already exists when clicked as it is disabled when userloading
   async function onSignIn(googleUser) {
+    console.log("Entering google sign-in")
     debug("GUSER", googleUser);
     if (googleUser.error) {
       if (googleUser.error === "popup_closed_by_user") {
