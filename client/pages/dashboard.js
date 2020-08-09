@@ -6,6 +6,7 @@ import Header from "../components/Header"
 import Loading from "../components/Loading";
 import UserContext from "../contexts/UserContext";
 import decks from "../decks.json";
+import CreateDeck from "../components/CreateDeck";
 import { toast } from "react-toastify";
 const debug = require("debug")("app:Dashboard");
 
@@ -23,6 +24,14 @@ export default function Dashboard(props) {
   // if (!user) {
   //   return <Loading />;
   // }
+
+  useEffect(() => {
+    if (user) {
+      toast(`Hello ${user && user.name}`);
+    } else {
+      toast("Not logged in");
+    }
+  }, []);
 
   return (
     <>

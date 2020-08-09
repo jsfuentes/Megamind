@@ -7,7 +7,8 @@ defmodule ReactPhoenixWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_react_phoenix_key",
-    signing_salt: "uPcRC+JY"
+    signing_salt: "uPcRC+JY",
+    domain: Application.fetch_env!(:react_phoenix, :client_url)
   ]
 
   socket "/socket", ReactPhoenixWeb.UserSocket,

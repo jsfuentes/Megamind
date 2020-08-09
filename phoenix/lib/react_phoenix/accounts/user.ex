@@ -9,6 +9,7 @@ defmodule ReactPhoenix.Accounts.User do
     field :locale, :string
     field :gaccess_token, :string
     field :gid, :string
+    has_many :user, ReactPhoenix.Decks.Deck
 
     timestamps()
   end
