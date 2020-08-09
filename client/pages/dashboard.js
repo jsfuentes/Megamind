@@ -5,10 +5,13 @@ import { useRouter } from "next/router";
 import Loading from "../components/Loading";
 import UserContext from "../contexts/UserContext";
 import decks from "../decks.json";
+import axios from "axios";
+import CreateDeck from "../components/CreateDeck";
 import { toast } from "react-toastify";
 const debug = require("debug")("app:Dashboard");
 
 export default function Dashboard(props) {
+  const [name, setName] = useState("");
   const { user } = useContext(UserContext);
   const router = useRouter();
 
@@ -44,6 +47,7 @@ export default function Dashboard(props) {
           })}
         </div>
       </div>
+      <CreateDeck></CreateDeck>
     </div>
   );
 }
