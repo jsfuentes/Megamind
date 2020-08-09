@@ -23,11 +23,15 @@ export default function Dashboard(props) {
   //   return <Loading />;
   // }
 
+  function t() {
+    toast("IIIII LOVE OYU");
+  }
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="container flex flex-col justify-center">
         <h1> Hello {user && user.name} </h1>
-        <h3>Decks</h3>
+        <h3 onClick={t}>Decks</h3>
         <div className="flex flex-row w-full mt-4">
           {Object.entries(decks).map((value, index) => {
             return (

@@ -6,10 +6,7 @@ import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 
 toast.configure({
-  bodyClassName: "px-2 text-white font-medium w-full relative  min-w-full ",
-  // progressClassName: "bg-gray-700",
-  toastClassName:
-    "py-3 rounded bg-gray-900 flex items-center justify-center min-h-0 shadow-md ", //disable default min height
+  bodyClassName: "px-2 text-black font-medium w-full relative min-w-full ",
   closeButton: false,
   position: toast.POSITION.TOP_CENTER,
   autoClose: 5000, //false to disable
