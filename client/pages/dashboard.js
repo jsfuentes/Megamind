@@ -1,20 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+import Loading from "../components/Loading";
+import UserContext from "../contexts/UserContext";
 import decks from "../decks.json";
+import { toast } from "react-toastify";
+const debug = require("debug")("app:Dashboard");
 
 export default function Dashboard(props) {
+  const { user } = useContext(UserContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    toast("Must login first");
+    if (!user) {
+      router.push("/");
+    }
+  }, []);
+
+  if (!user) {
+    return <Loading />;
+  }
+
   return (
-    <div className="deck-grid">
-      <h1>Decks</h1>
-      {Object.entries(decks).map((value, index) => {
-        return (
-          <div className="deck" key={value.id}>
-            <Link href="/StudyApp/[id]" as={"/StudyApp/" + value[0]}>
-              <a>{value[1].title}</a>
-            </Link>
-          </div>
-        );
-      })}
+    <div className="flex flex-col justify-center items-center">
+      <div className="container flex flex-col justify-center">
+        <h1> Hello {user.name} </h1>
+        <h3>Decks</h3>
+        <div className="flex flex-row w-full mt-4">
+          {Object.entries(decks).map((value, index) => {
+            return (
+              <div className="deck" key={value.id}>
+                <Link href="/StudyApp/[id]" as={"/StudyApp/" + value[0]}>
+                  <a>{value[1].title}</a>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

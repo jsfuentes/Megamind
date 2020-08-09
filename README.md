@@ -1,6 +1,6 @@
 # ReactPhoenix
 
-Get the .env file from Jorge and put it in the root directory
+Get the .env file from Jorge or its pinned in the Discord server and put it in the root directory
 
 ```
 source .env
@@ -9,12 +9,14 @@ source .env
 ## Initial Backend Server Setup
 
 ```
+cd phoenix
 mix deps.get #Install deps
 cd assets  #Install clientside npm packages
 yarn
 cd ..
 mix phx.server #Start server
 ```
+
 ## Initial Client Server Setup
 
 ```
@@ -22,6 +24,10 @@ cd client
 npm install #install dependancies
 
 ```
+
+# Running
+
+You need to run the server and the client in two seperate terminal windows:
 
 ## Running Server
 

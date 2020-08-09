@@ -58,7 +58,6 @@ function GoogleButton(props) {
 
     debug("GUSER", googleUser, googleUser.accessToken);
     try {
-      debug("AAAA", axios);
       const resp = await axios.post("/api/users", {
         user: { gaccess_token: googleUser.accessToken },
       });
