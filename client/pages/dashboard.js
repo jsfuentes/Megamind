@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+import Loading from "../components/Loading";
+import UserContext from "../contexts/UserContext";
 import decks from "../decks.json";
 import axios from 'axios';
 import Modal from 'react-modal';
+import { toast } from "react-toastify";
+const debug = require("debug")("app:Dashboard");
 
 export default function Dashboard(props) {
   const [name, setName] = useState("");
   const [noEvent, setNoEvent] = useState(true);
   const [modalIsOpen,setIsOpen] = React.useState(false);
+  const { user } = useContext(UserContext);
+  const router = useRouter();
 
   function openModal() {
     setIsOpen(true);
@@ -36,18 +44,36 @@ export default function Dashboard(props) {
     },
   };
 
-  return (
-    <div className="deck-grid">
-      <h1>Decks</h1>
-      {Object.entries(decks).map((value, index) => {
-        return (
-          <div className="deck" key={value.id}>
-            <Link href="/StudyApp/[id]" as={"/StudyApp/" + value[0]}>
-              <a>{value[1].title}</a>
-            </Link>
-          </div>
-        );
-      })}
+
+
+  // useEffect(() => {
+  //   toast("Must login first");
+  //   if (!user) {
+  //     router.push("/");
+  //   }
+  // }, []);
+
+  // if (!user) {
+  //   return <Loading />;
+  // }
+
+  return (    
+    <div className="flex flex-col justify-center items-center">
+      <div className="container flex flex-col justify-center">
+        <h1> Hello {user && user.name} </h1>
+        <h3>Decks</h3>
+        <div className="flex flex-row w-full mt-4">
+          {Object.entries(decks).map((value, index) => {
+            return (
+              <div className="deck" key={value.id}>
+                <Link href="/StudyApp/[id]" as={"/StudyApp/" + value[0]}>
+                  <a>{value[1].title}</a>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <button onClick={openModal}>Create New Deck</button>
         <Modal
           isOpen={modalIsOpen}
