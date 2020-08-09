@@ -26,15 +26,20 @@ export default function Dashboard(props) {
   //   return <Loading />;
   // }
 
-  function t() {
-    toast("IIIII LOVE OYU");
-  }
-
+  useEffect(() => {
+    if (user) {
+      toast(`Hello ${user && user.name}`);
+    } else {
+      toast("Not logged in");
+    }
+  }, []);
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="container flex flex-col justify-center">
-        <h1> Hello {user && user.name} </h1>
-        <h3 onClick={t}>Decks</h3>
+        <div className="w-full flex justify-between items-center mt-8 text-3xl font-semibold">
+          <div> My Decks</div>
+          <CreateDeck />
+        </div>
         <div className="flex flex-row w-full mt-4">
           {Object.entries(decks).map((value, index) => {
             return (
@@ -47,7 +52,6 @@ export default function Dashboard(props) {
           })}
         </div>
       </div>
-      <CreateDeck></CreateDeck>
     </div>
   );
 }
