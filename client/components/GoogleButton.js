@@ -34,6 +34,7 @@ function GoogleButton(props) {
 
   //user already exists when clicked as it is disabled when userloading
   async function onSignIn(googleUser) {
+    debug("GUSER", googleUser);
     if (googleUser.error) {
       if (googleUser.error === "popup_closed_by_user") {
         return;
@@ -56,7 +57,6 @@ function GoogleButton(props) {
       return;
     }
 
-    debug("GUSER", googleUser, googleUser.accessToken);
     try {
       const resp = await axios.post("/api/users", {
         user: { gaccess_token: googleUser.accessToken },
