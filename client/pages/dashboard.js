@@ -67,6 +67,7 @@ export default function Dashboard(props) {
                   </div></a></Link>
                 );
               })}
+              <CreateDeck />
             </div>
           </div>
       </div>

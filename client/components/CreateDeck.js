@@ -53,41 +53,43 @@ export default function CreateDeck(props) {
 
   return (
     <div className="modal">
-      <button onClick={openModal}>Create New Deck</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          onClick={closeModal}
+      <div className="h-48 w-48 flex-none bg-cover border-t border-b border-l border-gray-400 rounded-l text-center overflow-hidden" style={{"backgroundImage": "url('/img/mm.png')"}} title="Megamind holding a mug">
+        <button onClick={openModal} className="border-r border-b border-t border-gray-400 lg:border-l-0 lg:border-gray-400 bg-green-900 hover:bg-green-200 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal text-white hover:text-black hover:border-transparent">Create New Deck</button>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
         >
-          Close
-        </button>
-
-        <form
-          className="border-4 border-solid rounded-sm flex flex-col justify-center items-center p-6 mb-4"
-          onSubmit={onSubmit}
-        >
-          <div className="text-3xl font-bold">Deck Name</div>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="title"
-            type="text"
-            placeholder="Deck Name"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          &nbsp;
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={closeModal}
           >
-            Create
+            Close
           </button>
-        </form>
-      </Modal>
+
+          <form
+            className="border-4 border-solid rounded-sm flex flex-col justify-center items-center p-6 mb-4"
+            onSubmit={onSubmit}
+          >
+            <div className="text-3xl font-bold">Deck Name</div>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="title"
+              type="text"
+              placeholder="Deck Name"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            &nbsp;
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Create
+            </button>
+          </form>
+        </Modal>
+      </div>
     </div>
   );
 }
