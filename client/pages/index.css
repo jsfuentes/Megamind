@@ -2,10 +2,9 @@
 @tailwind components;
 
 body {
-  background-color: black;
+  background-color: black ;
   line-height: 1.0625; /* The height Apple used to tighten up the spacing a bit. */
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  color: white;
 }
 
 html,
@@ -14,30 +13,11 @@ body {
   height: 100%;
 }
 
-.deck-grid {
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(600px, 600px));
-  gap: 5rem;
+.wrapper {
+  text-align: center;
+  height: 100%;
 }
 
-.deck {
-  font-size: 64px;
-  font-weight: 600; /* Nice, chunky, bold! */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.333);
-  background-color: black;
-  cursor: pointer;
-  transform: perspective(1000px) translateY(var(--translate-y, 0));
-  color: white;
-}
-
-.deck:hover {
-  --translate-y: -2px;
-  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.666);
-}
 
 .flashcard {
   background-color: black;
