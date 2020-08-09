@@ -68,7 +68,7 @@ function GoogleButton(props) {
         props.userCallback(newUser);
       }
       if (props.route) {
-        router.push(props.route);
+        // router.push(props.route);
       }
     } catch (err) {
       if (err.response && err.response.status === 401) {

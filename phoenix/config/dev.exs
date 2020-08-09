@@ -26,6 +26,9 @@ config :cors_plug,
   max_age: 86400,
   methods: ["GET", "POST"]
 
+config :react_phoenix,
+  client_url: "http://localhost:3000"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
