@@ -22,7 +22,7 @@ defmodule ReactPhoenixWeb.UserView do
     }
   end
 
-  def render("basic.json", %{user: user}) do
+  def render("public.json", %{user: user}) do
     %{
       id: user.id,
       name: user.name,

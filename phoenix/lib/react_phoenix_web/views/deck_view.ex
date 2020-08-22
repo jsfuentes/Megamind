@@ -1,7 +1,7 @@
 defmodule ReactPhoenixWeb.DeckView do
   use ReactPhoenixWeb, :view
   alias ReactPhoenixWeb.DeckView
-  alias ReactPhoenixWeb.UserView
+  alias ReactPhoenix.Accounts
 
   def render("index.json", %{decks: decks}) do
     %{data: render_many(decks, DeckView, "deck.json")}
@@ -12,11 +12,13 @@ defmodule ReactPhoenixWeb.DeckView do
   end
 
   def render("deck.json", %{deck: deck}) do
+    user = Accounts.get_user!(deck.user_id)
+
     %{
       id: deck.id,
       title: deck.title,
       picture: deck.picture,
-      user: render_one(deck.user, UserView, "basic.json", as: :user)
+      user: render_one(user, ReactPhoenixWeb.UserView, "public.json")
     }
   end
 end

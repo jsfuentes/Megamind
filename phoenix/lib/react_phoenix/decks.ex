@@ -23,7 +23,6 @@ defmodule ReactPhoenix.Decks do
 
   def list_decks(user_id) do
     Repo.all(from d in Deck, where: d.user_id == ^user_id)
-    |> Repo.preload(:user)
   end
 
   @doc """
@@ -40,7 +39,9 @@ defmodule ReactPhoenix.Decks do
       ** (Ecto.NoResultsError)
 
   """
-  def get_deck!(id), do: Repo.get!(Deck, id)
+  def get_deck!(id) do
+    Repo.get!(Deck, id)
+  end
 
   @doc """
   Creates a deck.
