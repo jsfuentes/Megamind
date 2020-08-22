@@ -2,48 +2,25 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { axios } from "src/utils/utils.js";
-import Navbar from "src/components/Navbar";
-import Footer from "src/components/Footer";
+import Header from "src/components/Header";
+import GoogleButton from "src/components/GoogleButton";
+const debug = require("debug")("app:Landing");
 
 export default function Landing() {
-  const [resp, setResp] = useState("");
-  useEffect(() => {
-    axios
-      .get("/api")
-      .then((response) => {
-        console.log("Haha", response);
-        setResp(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
   return (
-    <>
-      <Navbar>
-        <Link to="/login" className="navlink">
-          Login
-        </Link>
-      </Navbar>
-
-      <div className="w-full p-8">
-        <div className="px-4 pb-4 flex flex-col justify-center items-center">
-          <div className="text-4xl block font-bold mb-4">
-            Welcome to React Base BB
-          </div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4"
-            type="button"
-          >
-            Useless Button
-          </button>
-          <div className="text-2xl block font-bold mb-4">
-            {resp ? `The Server Says "${resp}"` : "The Server Can't Be Reached"}
-          </div>
+    <div>
+      <Header />
+      <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center container">
+          <main>
+            <h1 className="text-green-900">Megamind</h1>
+            <p className="text-green-200">A memory application</p>
+            <GoogleButton variant="inverted-black" route="/dashboard">
+              Google Login with Popup
+            </GoogleButton>
+          </main>
         </div>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }

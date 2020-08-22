@@ -2,22 +2,27 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DailyIframe from "@daily-co/daily-js";
 
 import Loading from "src/components/Loading.js";
 import ErrorBoundary from "src/components/ErrorBoundary";
 import UserRoute from "src/components/UserRoute";
+import UserContext from "src/contexts/UserContext.js";
 
 import Landing from "src/pages/Landing";
 import my404 from "src/pages/my404";
 import Login from "src/pages/Login";
-import Home from "src/pages/Home";
-import UserContext from "src/contexts/UserContext.js";
+import Dashboard from "src/pages/Dashboard";
+import Deck from "src/pages/Deck";
 
 toast.configure({
+  bodyClassName: "px-2 text-black font-medium w-full relative min-w-full ",
+  closeButton: false,
   position: toast.POSITION.TOP_CENTER,
-  toastClassName: "p-5 text-green-500 bg-green-100 rounded w-full font-medium",
-  autoClose: 5000,
+  autoClose: 5000, //false to disable
+  closeOnClick: true,
+  pauseOnHover: false,
+  pauseOnFocusLoss: false,
+  // type: toast.TYPE.INFO
 });
 
 export default function Router() {
@@ -31,7 +36,8 @@ export default function Router() {
           <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Landing} />
-            <UserRoute exact path="/home" component={Home} />
+            <UserRoute exact path="/dashboard" component={Dashboard} />
+            <UserRoute exact path="/deck/:id" component={Deck} />
             <Route component={my404} />
           </Switch>
         </BrowserRouter>

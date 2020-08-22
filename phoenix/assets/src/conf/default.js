@@ -4,5 +4,6 @@ export default {
   CLIENT_URL: "http://localhost:3000",
   SENTRY_DNS: "",
   GOOGLE_CLIENT_ID:
-    "575235335697-8aehqvefq8935590hck0ap3bg52p36ns.apps.googleusercontent.com",
+    "699671360079-druakb2deefo5d0o4j8nkt43nj1l9iup.apps.googleusercontent.com",
+  HTML_ROOT_ID: "root",
 };

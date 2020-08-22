@@ -14,5 +14,35 @@ code {
     monospace;
 }
 
+body {
+  background-color: black;
+  line-height: 1.0625; /* The height Apple used to tighten up the spacing a bit. */
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+.wrapper {
+  text-align: center;
+  height: 100%;
+}
+
+.flashcard {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  border-radius: 0.25rem;
+}
+
 @tailwind components;
 @tailwind utilities;

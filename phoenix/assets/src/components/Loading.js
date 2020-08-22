@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
 
-import Logo from "src/img/logo.png";
+Loading.propTypes = {
+  full: PropTypes.bool.isRequired,
+};
 
-export default function Loading() {
+Loading.defaultProps = {
+  full: false,
+};
+
+export default function Loading(props) {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    let timeout = setTimeout(() => setShow(true), 300);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  const cls = classNames({
+    "flex justify-center items-center": true,
+    "w-full h-full": props.full,
+    "w-screen h-screen": !props.full,
+  });
+
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <img className="w-10 h-auto" src={Logo} alt="Loading Icon" />
+    <div className={cls}>
+      {show && (
+        <img
+          className="heartBeat w-10 h-auto"
+          src="/egg2.png"
+          alt="Loading Icon"
+        />
+      )}
     </div>
   );
 }
