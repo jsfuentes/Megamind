@@ -21,6 +21,11 @@ defmodule ReactPhoenix.Decks do
     Repo.all(Deck)
   end
 
+  def list_decks(user_id) do
+    Repo.all(from d in Deck, where: d.user_id == ^user_id)
+    |> Repo.preload(:user)
+  end
+
   @doc """
   Gets a single deck.
 

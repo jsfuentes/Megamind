@@ -3,14 +3,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Loading from "src/components/Loading.js";
 import ErrorBoundary from "src/components/ErrorBoundary";
 import UserRoute from "src/components/UserRoute";
 import UserContext from "src/contexts/UserContext.js";
 
 import Landing from "src/pages/Landing";
 import my404 from "src/pages/my404";
-import Login from "src/pages/Login";
 import Dashboard from "src/pages/Dashboard";
 import Deck from "src/pages/Deck";
 
@@ -34,10 +32,9 @@ export default function Router() {
         {/* <Suspense fallback={<Loading />}> */}
         <BrowserRouter>
           <Switch>
-            <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Landing} />
-            <UserRoute exact path="/dashboard" component={Dashboard} />
-            <UserRoute exact path="/deck/:id" component={Deck} />
+            <UserRoute exact path="/dashboard" component={Dashboard} required />
+            <UserRoute exact path="/deck/:id" component={Deck} required />
             <Route component={my404} />
           </Switch>
         </BrowserRouter>

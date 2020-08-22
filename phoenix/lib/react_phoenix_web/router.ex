@@ -32,6 +32,8 @@ defmodule ReactPhoenixWeb.Router do
     get "/users/me", UserController, :me
     resources "/users", UserController, except: [:new, :edit]
     resources "/decks", DeckController, except: [:new, :edit]
+    get "/*path", ApiController, :not_found
+    post "/*path", ApiController, :not_found
   end
 
   scope "/", ReactPhoenixWeb do

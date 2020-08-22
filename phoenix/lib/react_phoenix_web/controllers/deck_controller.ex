@@ -10,7 +10,9 @@ defmodule ReactPhoenixWeb.DeckController do
   plug ReactPhoenixWeb.LoggedIn when action in [:create]
 
   def index(conn, _params) do
-    decks = Decks.list_decks()
+    user_id = conn.assigns[:current_user].id
+
+    decks = Decks.list_decks(user_id)
     render(conn, "index.json", decks: decks)
   end
 
@@ -19,7 +21,7 @@ defmodule ReactPhoenixWeb.DeckController do
 
     payload =
       deck_params
-      |> Map.put(:user_id, user_id)
+      |> Map.put("user_id", user_id)
 
     IO.inspect(payload)
 

@@ -37,7 +37,8 @@ export default function UserRoute(props) {
     if (!newUser & required) {
       //for some reason redirect wouldn't work so had to use history here
       debug("Auth failed, redirecting from", location.pathname);
-      history.push(`/login?${redirectParams}`);
+      toast(`Please login to access ${location.pathname}`);
+      history.push(`/?${redirectParams}`);
     } else {
       debug("NewUser", newUser);
       setUser(newUser);

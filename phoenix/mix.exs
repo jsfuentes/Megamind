@@ -33,7 +33,6 @@ defmodule ReactPhoenix.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:cors_plug, "~> 1.5"},
       {:ecto_sql, "~> 3.1"},
       {:gettext, "~> 0.11"},
       {:httpoison, "~> 1.6"},

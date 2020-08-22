@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
 
@@ -19,16 +20,17 @@ const customStyles = {
 
 Modal.setAppElement(`#${conf.get("HTML_ROOT_ID")}`);
 
-export default function CreateDeck(props) {
+export default function CreateDeck() {
   const [title, setTitle] = useState("");
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const history = useHistory();
 
   function openModal() {
-    setIsOpen(true);
+    setModalOpen(true);
   }
 
   function closeModal() {
-    setIsOpen(false);
+    setModalOpen(false);
   }
 
   async function onSubmit(event) {
@@ -37,7 +39,7 @@ export default function CreateDeck(props) {
       const resp = await axios.post("/api/decks", { deck: { title } });
       const newDeck = resp.data.data;
       debug("newDeck: ", newDeck);
-      toast("Created deck");
+      history.push(`/deck/${newDeck.id}`);
     } catch (err) {
       if (err.response && err.response.status === 401) {
         debug("Unauthorized user");
@@ -60,7 +62,7 @@ export default function CreateDeck(props) {
         Create New Deck
       </button>
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={modalOpen}
         onRequestClose={closeModal}
         style={customStyles}
       >

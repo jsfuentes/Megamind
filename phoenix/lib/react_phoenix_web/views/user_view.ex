@@ -21,4 +21,12 @@ defmodule ReactPhoenixWeb.UserView do
       gaccess_token: user.gaccess_token
     }
   end
+
+  def render("basic.json", %{user: user}) do
+    %{
+      id: user.id,
+      name: user.name,
+      picture: user.picture
+    }
+  end
 end

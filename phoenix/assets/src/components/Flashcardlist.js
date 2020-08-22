@@ -22,7 +22,7 @@ export default function Flashcardlist(props) {
     );
   });
   return (
-    <div className="flashcardlist">
+    <div className="w-full h-full">
       {flashcards.map((flashcard) => {
         return flashcard;
       })}

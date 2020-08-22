@@ -41,4 +41,10 @@ defmodule ReactPhoenixWeb.ApiController do
   #       json conn, reason
   #   end
   # end
+
+  def not_found(conn, _params) do
+    conn
+    |> put_status(404)
+    |> text("")
+  end
 end

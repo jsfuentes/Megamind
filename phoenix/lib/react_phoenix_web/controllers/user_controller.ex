@@ -20,7 +20,6 @@ defmodule ReactPhoenixWeb.UserController do
       |> put_status(:created)
       |> put_resp_header("location", Routes.user_path(conn, :show, user))
       |> put_session(:user_id, user.id)
-      |> put_resp_cookie("my-cookie", %{user_id: user.id}, sign: true)
       |> render("show.json", user: user)
     end
   end

@@ -8,21 +8,23 @@ import Header from "src/components/Header";
 import UserContext from "src/contexts/UserContext";
 import CreateDeck from "src/components/CreateDeck";
 import decks from "./decks.json";
+import { axios } from "src/utils/utils.js";
 const debug = require("debug")("app:Dashboard");
 
-export default function Dashboard(props) {
+export default function Dashboard() {
   const { user } = useContext(UserContext);
+  const [decks, setDecks] = useState([]);
 
-  // useEffect(() => {
-  //   toast("Must login first");
-  //   if (!user) {
-  //     router.push("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    async function f() {
+      const resp = await axios.get("/api/decks");
+      const decks = resp.data.data;
+      debug("Got decks", decks);
+      setDecks(decks);
+    }
 
-  // if (!user) {
-  //   return <Loading />;
-  // }
+    f();
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -42,8 +44,8 @@ export default function Dashboard(props) {
           <div className="grid grid-cols-3">
             {Object.entries(decks).map(([id, value]) => {
               return (
-                <Link to={`/deck/${id}`}>
-                  <div class="flex p-6">
+                <Link to={`/deck/${id}`} key={id}>
+                  <div className="flex p-6">
                     <img
                       src={MM}
                       className="h-48 w-48 flex-none bg-cover border-t border-b border-l border-gray-400 rounded-l text-center overflow-hidden object-contain"
@@ -59,11 +61,11 @@ export default function Dashboard(props) {
                       <div className="flex items-center">
                         <img
                           className="w-10 h-10 rounded-full mr-4"
-                          src={Tighten}
+                          src={value.user.picture}
                           alt="Tighten"
                         ></img>
                         <div className="text-sm">
-                          <p className="leading-none">{value.author}</p>
+                          <p className="leading-none">{value.user.name}</p>
                           <p className="">Aug 18</p>
                         </div>
                       </div>

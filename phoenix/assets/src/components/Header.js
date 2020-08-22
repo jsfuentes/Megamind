@@ -8,7 +8,7 @@ function Header() {
       <div className="flex w-full flex-grow lg:items-center lg:w-auto">
         <div className="text-sm lg:flex-grow">
           <div className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
-            <Link to="/index">Index</Link>
+            <Link to="/">Index</Link>
           </div>
           <div className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
             <Link
@@ -16,14 +16,6 @@ function Header() {
               className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
             >
               Dashboard
-            </Link>
-          </div>
-          <div className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
-            <Link
-              to="/index"
-              className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4"
-            >
-              Index
             </Link>
           </div>
         </div>
