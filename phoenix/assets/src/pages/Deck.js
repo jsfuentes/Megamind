@@ -6,6 +6,8 @@ import { axios } from "src/utils/utils.js";
 import Flashcard from "src/components/Flashcard";
 import Header from "src/components/Header";
 import Button from "src/components/Button";
+import ProgressBar from '../components/ProgressBar'
+
 const debug = require("debug")("app:Deck");
 
 const card = {
@@ -41,9 +43,11 @@ export default function Deck(props) {
   return (
     <div>
       <Header />
+      
       <div className={"text-3xl container mx-auto"}>
         <div className="w-full py-6 flex flex-row justify-between">
           <div className="text-black text-3xl my-2">{deck.title}</div>
+          <ProgressBar />
           <Button>Add Card</Button>
         </div>
         <div className="text-white w-full flex items-center justify-center">
