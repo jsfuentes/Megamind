@@ -8,6 +8,8 @@ import Header from "src/components/Header";
 import UserContext from "src/contexts/UserContext";
 import CreateDeck from "src/components/CreateDeck";
 import { axios } from "src/utils/utils.js";
+import EndScreen from "../components/EndScreen";
+
 const debug = require("debug")("app:Dashboard");
 
 export default function Dashboard() {
