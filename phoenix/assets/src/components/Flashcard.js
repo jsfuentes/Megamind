@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSpring, animated as a } from "react-spring";
 import { Edit, Save, Trash } from "react-feather";
+import Button from "../components/Button";
 
 const debug = require("debug")("app:FlashCard");
 export default function Flashcard(props) {
@@ -34,41 +35,75 @@ export default function Flashcard(props) {
   }
 
   return (
-    <div
-      className="w-128 h-88 relative"
-      onClick={() => {
-        setFlipped((state) => !state);
-        debug("FLIP");
-      }}
-    >
-      <a.div
-        className="c back w-full h-full"
-        style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}
-      >
-        <FlashCardSide
-          title="Question"
-          text={props.FrontText}
-          edit={edit}
-          startEdit={startEdit}
-          saveCard={saveCard}
-          deleteCard={deleteCard}
-        />
-      </a.div>
-      <a.div
-        className="c front w-full h-full"
-        style={{
-          opacity,
-          transform: transform.interpolate((t) => `${t} rotateX(180deg)`),
+    <div className="card-nuts">
+      <div
+        className="w-128 h-88 relative"
+        onClick={() => {
+          setFlipped((state) => !state);
+          debug("FLIP");
         }}
       >
-        <FlashCardSide
-          title="Answer"
-          text={props.BackText}
-          edit={edit}
-          startEdit={startEdit}
-          saveCard={saveCard}
-          deleteCard={deleteCard}
-        />
+        <a.div
+          className="c back w-full h-full"
+          style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}
+        >
+          <FlashCardSide
+            title="Question"
+            text={props.FrontText}
+            edit={edit}
+            startEdit={startEdit}
+            saveCard={saveCard}
+            deleteCard={deleteCard}
+          />
+        </a.div>
+        <a.div
+          className="c front w-full h-full"
+          style={{
+            opacity,
+            transform: transform.interpolate((t) => `${t} rotateX(180deg)`),
+          }}
+        >
+          <FlashCardSide
+            title="Answer"
+            text={props.BackText}
+            edit={edit}
+            startEdit={startEdit}
+            saveCard={saveCard}
+            deleteCard={deleteCard}
+          />
+        </a.div>
+      </div>
+      <a.div
+        className={"reactionContainer"}
+        style={{
+          opacity: opacity,
+          visibility: opacity.interpolate((o) =>
+            o == 0 ? "hidden" : "visible"
+          ),
+        }}
+      >
+        <Button
+          onClick={() => props.notifyReactionClicked()}
+          variant="pink"
+          size="large"
+        >
+          1
+        </Button>
+        <Button variant="pink" size="large">
+          2
+        </Button>
+        <Button variant="pink" size="large">
+          3
+        </Button>
+        <Button variant="pink" size="large">
+          4
+        </Button>
+        <Button variant="pink" size="large">
+          5
+        </Button>
+        <Button variant="pink" size="large">
+          6
+        </Button>
       </a.div>
     </div>
   );
