@@ -6,7 +6,6 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "@daily-co/daily-js": "^0.9.986",
     "@sentry/browser": "^5.15.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

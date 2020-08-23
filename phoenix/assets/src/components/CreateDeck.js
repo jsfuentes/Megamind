@@ -1,24 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Modal from "react-modal";
 import { toast } from "react-toastify";
 
+import Modal from "src/components/Modal";
 import conf from "conf";
 import { axios } from "src/utils/utils.js";
+import Button from "src/components/Button.js";
 const debug = require("debug")("app:CreateDeck");
-
-const customStyles = {
-  content: {
-    position: "fixed",
-    top: "50%",
-    left: "50%",
-    width: "50%",
-    color: "grey",
-    transform: "translate(-50%, -50%)",
-  },
-};
-
-Modal.setAppElement(`#${conf.get("HTML_ROOT_ID")}`);
 
 export default function CreateDeck() {
   const [title, setTitle] = useState("");
@@ -61,25 +49,14 @@ export default function CreateDeck() {
       >
         Create New Deck
       </button>
-      <Modal
-        isOpen={modalOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          onClick={closeModal}
-        >
-          Close
-        </button>
-
+      <Modal isOpen={modalOpen} onRequestClose={closeModal}>
         <form
-          className="border-4 border-solid rounded-sm flex flex-col justify-center items-center p-6 mb-4"
+          className="rounded-sm flex flex-col justify-center items-center p-6 my-4"
           onSubmit={onSubmit}
         >
           <div className="text-3xl font-bold">Deck Name</div>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline my-3"
             id="title"
             type="text"
             placeholder="Deck Name"
@@ -87,12 +64,9 @@ export default function CreateDeck() {
             onChange={(e) => setTitle(e.target.value)}
           />
           &nbsp;
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
+          <Button size="large" submit={true}>
             Create
-          </button>
+          </Button>
         </form>
       </Modal>
     </div>

@@ -654,6 +654,7 @@ module.exports = {
     alignItems: ["responsive"],
     alignSelf: ["responsive"],
     appearance: ["responsive"],
+    animation: ["responsive", "hover", "focus"],
     backgroundAttachment: ["responsive"],
     backgroundColor: ["responsive", "hover", "focus"],
     backgroundOpacity: ["responsive", "hover", "focus"],

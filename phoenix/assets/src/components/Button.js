@@ -9,11 +9,13 @@ Button.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   disabled: PropTypes.bool,
+  submit: PropTypes.bool,
 };
 
 Button.defaultProps = {
   variant: "black",
   disabled: false,
+  submit: false,
 };
 
 export default function Button(props) {
@@ -30,7 +32,12 @@ export default function Button(props) {
     "w-full": props.fullWidth,
   });
   return (
-    <button className={style} onClick={props.onClick} disabled={props.disabled}>
+    <button
+      className={style}
+      onClick={props.onClick}
+      disabled={props.disabled}
+      type={props.submit ? "submit" : "null"}
+    >
       {props.children}
     </button>
   );
