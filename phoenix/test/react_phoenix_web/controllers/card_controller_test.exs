@@ -20,7 +20,14 @@ defmodule ReactPhoenixWeb.CardControllerTest do
     session_interval: 43,
     successful_session_count: 43
   }
-  @invalid_attrs %{back: nil, easiness_factor: nil, front: nil, next_session: nil, session_interval: nil, successful_session_count: nil}
+  @invalid_attrs %{
+    back: nil,
+    easiness_factor: nil,
+    front: nil,
+    next_session: nil,
+    session_interval: nil,
+    successful_session_count: nil
+  }
 
   def fixture(:card) do
     {:ok, card} = Decks.create_card(@create_attrs)

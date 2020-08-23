@@ -11,12 +11,14 @@ defmodule ReactPhoenixWeb.CardView do
   end
 
   def render("card.json", %{card: card}) do
-    %{id: card.id,
+    %{
+      id: card.id,
       front: card.front,
       back: card.back,
       session_interval: card.session_interval,
       next_session: card.next_session,
       successful_session_count: card.successful_session_count,
-      easiness_factor: card.easiness_factor}
+      easiness_factor: card.easiness_factor
+    }
   end
 end
