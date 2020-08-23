@@ -18,7 +18,6 @@ const card = {
 };
 
 export default function Deck(props) {
-  const [curCardIndex, setCardIndex] = useState(0);
   console.log("nuts");
 
   const [deck, setDeck] = useState(null);

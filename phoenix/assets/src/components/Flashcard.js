@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSpring, animated as a } from "react-spring";
+import Button from "../components/Button";
 
 export default function Flashcard(props) {
   const [flipped, setFlipped] = useState(false);
@@ -10,6 +11,7 @@ export default function Flashcard(props) {
   });
 
   return (
+      <div className="card-nuts">
     <div
       className="w-128 h-88 relative"
       onClick={() => setFlipped((state) => !state)}
@@ -29,7 +31,29 @@ export default function Flashcard(props) {
       >
         <FlashCardSide title="Answer" text={props.BackText} />
       </a.div>
+      
     </div>
+    <a.div className={"reactionContainer"} style={{opacity: opacity, visibility: opacity.interpolate((o) => o == 0 ? "hidden" : "visible" )}}>
+        <Button onClick={() => props.notifyReactionClicked()} variant="pink" size="large">
+          1
+        </Button>
+        <Button variant="pink" size="large">
+          2
+        </Button>
+        <Button variant="pink" size="large">
+          3
+        </Button>
+        <Button variant="pink" size="large">
+          4
+        </Button>
+        <Button variant="pink" size="large">
+          5
+        </Button>
+        <Button variant="pink" size="large">
+          6
+        </Button>
+      </a.div>
+      </div>
   );
 }
 
