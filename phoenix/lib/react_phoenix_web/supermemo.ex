@@ -10,7 +10,7 @@ defmodule ReactPhoenixWeb.Supermemo do
     successful_session_count = card.successful_session_count + 1
     easiness_factor = card.easiness_factor + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02))
 
-    if new_successful_session_count === 2 do
+    if successful_session_count === 2 do
       card
       |> Map.put(:next_session, current_session + 6)
       |> Map.put(:session_interval, 6)
