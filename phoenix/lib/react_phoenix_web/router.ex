@@ -29,6 +29,7 @@ defmodule ReactPhoenixWeb.Router do
 
     get "/", ApiController, :index
     get "/users/me", UserController, :me
+    post "/users/logout", UserController, :logout
     resources "/users", UserController, except: [:new, :edit]
     resources "/decks", DeckController, except: [:new, :edit]
     resources "/cards", CardController, except: [:new, :edit]

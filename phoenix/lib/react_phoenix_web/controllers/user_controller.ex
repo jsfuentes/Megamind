@@ -51,4 +51,11 @@ defmodule ReactPhoenixWeb.UserController do
     IO.inspect(user)
     render(conn, "show.json", user: user)
   end
+
+  def logout(conn, _params) do
+  IO.puts "HEKLLP"
+    conn
+    |> configure_session(drop: true)
+    |> send_resp(:no_content, "")
+  end
 end

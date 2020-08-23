@@ -57,7 +57,7 @@ export default function CreateDeck() {
     <div className="modal">
       <button
         onClick={openModal}
-        className="border-r border-b border-t border-gray-400 lg:border-l-0 lg:border-gray-400 bg-green-900 hover:bg-green-200 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal text-white hover:text-black hover:border-transparent"
+        className="border border-gray-400 lg:border-gray-400 bg-green-900 hover:bg-green-200 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal text-white hover:text-black hover:border-transparent"
       >
         Create New Deck
       </button>

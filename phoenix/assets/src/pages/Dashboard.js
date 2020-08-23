@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import MM from "src/img/mm.png";
-import Tighten from "src/img/tighten.png";
 import Header from "src/components/Header";
 import UserContext from "src/contexts/UserContext";
 import CreateDeck from "src/components/CreateDeck";
-import decks from "./decks.json";
 import { axios } from "src/utils/utils.js";
 const debug = require("debug")("app:Dashboard");
 
@@ -39,6 +37,10 @@ export default function Dashboard() {
       <Header />
       <div className="flex flex-col justify-center items-center font-sans">
         <div className="flex flex-col justify-center container">
+          <div className="w-full flex flex-row justify-between items-center my-2">
+            <div className="w-1 h-1" />
+            <CreateDeck />
+          </div>
           <h1> Hello {user && user.name} </h1>
           <h3>Decks</h3>
           <div className="grid grid-cols-3">
@@ -74,7 +76,6 @@ export default function Dashboard() {
                 </Link>
               );
             })}
-            <CreateDeck />
           </div>
         </div>
       </div>

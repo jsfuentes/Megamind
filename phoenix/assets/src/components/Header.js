@@ -1,10 +1,15 @@
 /* Completed Header component */
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import UserContext from "src/contexts/UserContext.js";
 import Logo from "src/components/Logo";
+import UserDropdown from "src/components/UserDropdown";
+import GoogleButton from "src/components/GoogleButton";
 
 function Header() {
+  const { user } = useContext(UserContext);
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-green-900 p-6">
       <div className="flex w-full flex-grow lg:items-center lg:w-auto">
@@ -20,9 +25,13 @@ function Header() {
           </div>
         </div>
         <div>
-          <div className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-black hover:bg-green-200 mt-4 lg:mt-0">
-            <Link to="/index">SIGN IN [CURRENTLY]</Link>
-          </div>
+          {user ? (
+            <UserDropdown />
+          ) : (
+            <GoogleButton variant="inverted-black" route="/dashboard">
+              Login
+            </GoogleButton>
+          )}
         </div>
       </div>
     </nav>
