@@ -6,7 +6,6 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "@daily-co/daily-js": "^0.9.986",
     "@sentry/browser": "^5.15.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -31,6 +30,7 @@
     "react-lazy-load-image-component": "^1.4.3",
     "react-modal": "^3.11.2",
     "react-router-dom": "^5.1.2",
+    "react-spring": "^8.0.27",
     "react-toastify": "^5.5.0",
     "uuidv4": "^6.0.8"
   },

@@ -14,8 +14,8 @@ export default function Landing() {
       <div className="flex-1 flex flex-col justify-center items-center container mx-auto">
         <div className="flex flex-col justify-center items-center bg-blue-800 p-8 my-auto">
           <div className="flex flex-row justify-center items-center animate-pulse">
-            <img src={logoImg} className="w-64 h-64 animate-spin" />
-            <div className="mt-8" style={{ fontSize: "12rem" }}>
+            <img src={logoImg} className="w-64 h-64 animate-pulse" />
+            <div className="mt-8 animate-pulse" style={{ fontSize: "12rem" }}>
               Megamind
             </div>
           </div>

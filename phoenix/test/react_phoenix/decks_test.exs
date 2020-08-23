@@ -67,9 +67,30 @@ defmodule ReactPhoenix.DecksTest do
   describe "cards" do
     alias ReactPhoenix.Decks.Card
 
-    @valid_attrs %{back: %{}, easiness_factor: 120.5, front: %{}, next_session: 42, session_interval: 42, successful_session_count: 42}
-    @update_attrs %{back: %{}, easiness_factor: 456.7, front: %{}, next_session: 43, session_interval: 43, successful_session_count: 43}
-    @invalid_attrs %{back: nil, easiness_factor: nil, front: nil, next_session: nil, session_interval: nil, successful_session_count: nil}
+    @valid_attrs %{
+      back: %{},
+      easiness_factor: 120.5,
+      front: %{},
+      next_session: 42,
+      session_interval: 42,
+      successful_session_count: 42
+    }
+    @update_attrs %{
+      back: %{},
+      easiness_factor: 456.7,
+      front: %{},
+      next_session: 43,
+      session_interval: 43,
+      successful_session_count: 43
+    }
+    @invalid_attrs %{
+      back: nil,
+      easiness_factor: nil,
+      front: nil,
+      next_session: nil,
+      session_interval: nil,
+      successful_session_count: nil
+    }
 
     def card_fixture(attrs \\ %{}) do
       {:ok, card} =

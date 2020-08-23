@@ -1,85 +1,67 @@
-import React, { useReducer } from 'react';
-import combineReducers from 'react-combine-reducers';
+import React, { useState } from "react";
+import { useSpring, animated as a } from "react-spring";
+import Button from "../components/Button";
 
-const sideInitialState = {
-    side: "front"
+export default function Flashcard(props) {
+  const [flipped, setFlipped] = useState(false);
+  const { transform, opacity } = useSpring({
+    opacity: flipped ? 1 : 0,
+    transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
+    config: { mass: 5, tension: 500, friction: 80 },
+  });
+
+  return (
+      <div className="card-nuts">
+    <div
+      className="w-128 h-88 relative"
+      onClick={() => setFlipped((state) => !state)}
+    >
+      <a.div
+        className="c back w-full h-full"
+        style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}
+      >
+        <FlashCardSide title="Question" text={props.FrontText} />
+      </a.div>
+      <a.div
+        className="c front w-full h-full"
+        style={{
+          opacity,
+          transform: transform.interpolate((t) => `${t} rotateX(180deg)`),
+        }}
+      >
+        <FlashCardSide title="Answer" text={props.BackText} />
+      </a.div>
+      
+    </div>
+    <a.div className={"reactionContainer"} style={{opacity: opacity, visibility: opacity.interpolate((o) => o == 0 ? "hidden" : "visible" )}}>
+        <Button onClick={() => props.notifyReactionClicked()} variant="pink" size="large">
+          1
+        </Button>
+        <Button variant="pink" size="large">
+          2
+        </Button>
+        <Button variant="pink" size="large">
+          3
+        </Button>
+        <Button variant="pink" size="large">
+          4
+        </Button>
+        <Button variant="pink" size="large">
+          5
+        </Button>
+        <Button variant="pink" size="large">
+          6
+        </Button>
+      </a.div>
+      </div>
+  );
 }
 
-const currentQualityOfResponseInitialState = {
-    currentQualityOfResponse: 0 
+function FlashCardSide(props) {
+  return (
+    <div className="w-full h-full py-4 px-8">
+      <div className="text-3xl font-bold py-3">{props.title}</div>
+      <div>{props.text}</div>
+    </div>
+  );
 }
-
-const sideReducer = (state, action) => {
-    switch (action.type) {
-        case "flip_to_front":
-            return { ...state,
-                side : "front"
-            };
-        case "flip_to_back":
-            return { ...state,
-                side: "back"
-            };
-        case "reset":
-            return sideInitialState;
-        default: return state;
-    }
-}
-
-const currentQualityOfResponseReducer = (state, action) => {
-    switch (action.type) {
-        case 5:
-            return changeCurrentQualityOfResponse(5, state);
-        case 4:
-            return changeCurrentQualityOfResponse(4, state);
-        case 3:
-            return changeCurrentQualityOfResponse(3, state);
-        case 2:
-            return changeCurrentQualityOfResponse(2, state);
-        case 1:
-            return changeCurrentQualityOfResponse(1, state);
-        case 0:
-            return changeCurrentQualityOfResponse(0, state);
-        default: return state;
-        ;
-    }
-}
-
-function changeCurrentQualityOfResponse(enteredQualityOfResponse, state) {
-    return { ...state,
-        currentQualityOfResponse: enteredQualityOfResponse
-    }
-}
-
-const [rootReducerCombined, initialStateCombined] = combineReducers({
-    side: [sideReducer, sideInitialState],
-    currentQualityOfResponse: [currentQualityOfResponseReducer, currentQualityOfResponseInitialState]
-});
-
-export default function Flashcard(props){
-    const [state, dispatch] = useReducer(rootReducerCombined, initialStateCombined);
-    return(
-        <>
-        <div className="flashcard">
-          <div className="flashcard-content">
-            <div> 
-              {state.side.side.localeCompare("back")===0 ? props.FrontTitle : null}
-            </div>
-            <div> 
-              {state.side.side.localeCompare("back")===0 ? props.FrontText : null}
-            </div>
-            <div> 
-              {state.side.side.localeCompare("front")===0 ? props.FrontTitle : props.BackTitle}
-            </div>
-            <div> 
-              {state.side.side.localeCompare("front")===0 ? props.FrontText : props.BackText}
-            </div>
-          </div>
-        <button 
-            onClick={() => dispatch({
-                type : state.side.side.localeCompare("front")===0 ? "flip_to_back" : "flip_to_front"
-            })}>Click Me!
-        </button>
-        </div>
-        </>
-    );
-};
