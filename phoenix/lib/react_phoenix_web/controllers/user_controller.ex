@@ -53,7 +53,6 @@ defmodule ReactPhoenixWeb.UserController do
   end
 
   def logout(conn, _params) do
-  IO.puts "HEKLLP"
     conn
     |> configure_session(drop: true)
     |> send_resp(:no_content, "")

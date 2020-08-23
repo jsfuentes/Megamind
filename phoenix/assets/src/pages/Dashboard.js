@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { format, parseISO } from "date-fns";
 
 import MM from "src/img/mm.png";
 import Header from "src/components/Header";
@@ -68,7 +69,9 @@ export default function Dashboard() {
                         ></img>
                         <div className="text-sm">
                           <p className="leading-none">{value.user.name}</p>
-                          <p className="">Aug 18</p>
+                          <p className="">
+                            {format(new Date(value.inserted_at), "MMM yy")}
+                          </p>
                         </div>
                       </div>
                     </div>
