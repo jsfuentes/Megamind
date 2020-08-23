@@ -86,8 +86,8 @@ export default function Dashboard() {
   );
 }
 
-const SAMPLE_FLASHCARDS = [
-  {
+const SAMPLE_FLASHCARDS = {
+  1: {
     id: 1,
     FrontTitle: "Question",
     FrontText: "What is Abdominal Aortic Aneurysm",
@@ -95,7 +95,7 @@ const SAMPLE_FLASHCARDS = [
     BackText:
       "An abdominal aortic aneurysm (AAA) is a swelling (aneurysm) of the aorta – the main blood vessel that leads away from the heart, down through the abdomen to the rest of the body.",
   },
-  {
+  2: {
     id: 2,
     FrontTitle: "Question",
     FrontText: "What is ACNE",
@@ -103,7 +103,7 @@ const SAMPLE_FLASHCARDS = [
     BackText:
       "Acne is a common skin condition that affects most people at some point. It causes spots, oily skin and sometimes skin that's hot or painful to touch.",
   },
-  {
+  3: {
     id: 3,
     FrontTitle: "Question",
     FrontText: "What is Acute Cholecystitis",
@@ -111,7 +111,7 @@ const SAMPLE_FLASHCARDS = [
     BackText:
       "Acute cholecystitis is swelling (inflammation) of the gallbladder. It is a potentially serious condition that usually needs to be treated in hospital.",
   },
-  {
+  4: {
     id: 4,
     FrontTitle: "Question",
     FrontText: "What is Acute lymphoblastic leukaemia",
@@ -119,6 +119,6 @@ const SAMPLE_FLASHCARDS = [
     BackText:
       "Leukaemia is cancer of the white blood cells. Acute leukaemia means the condition progresses rapidly and aggressively and requires immediate treatment.",
   },
-];
+};
 
 export { SAMPLE_FLASHCARDS };

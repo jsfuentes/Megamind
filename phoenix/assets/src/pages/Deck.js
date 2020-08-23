@@ -9,6 +9,7 @@ import Header from "src/components/Header";
 const debug = require("debug")("app:Deck");
 
 export default function Deck(props) {
+  const [curCardIndex, setCardIndex] = useState(0);
   const [deck, setDeck] = useState(null);
   const { id } = props.match.params;
 
@@ -24,16 +25,11 @@ export default function Deck(props) {
   }, []);
 
   return (
-    <div className="text-white text-3xl">
-      <Header />
-      {deck && (
-        <div>
-          <div>{deck.title}</div>
-          <div className="w-128 h-64">
-            <Flashcardlist deck={decks["deck_1"]} />
-          </div>
-        </div>
-      )}
+    <div className={"text-white text-3xl"}>
+      {/* <div className={"text-white text-3xl"}>{deck.title}</div>
+      <div className="flashcardlist-wrapper">
+        <Flashcardlist curCardIndex={curCardIndex} deck={deck}></Flashcardlist>
+      </div> */}
     </div>
   );
 }
