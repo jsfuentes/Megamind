@@ -47,7 +47,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-3">
             {Object.entries(decks).map(([id, value]) => {
               return (
-                <Link to={`/deck/${id}`} key={id}>
+                <Link to={`/deck/${value.id}`} key={id}>
                   <div className="flex p-6">
                     <img
                       src={MM}
