@@ -13,9 +13,11 @@ function getNextCard(curCardIndex, cardIds) {
 }
 
 export default function Flashcardlist(props) {
+  console.log("THOMAS GOT HERE");
   const deck = props.deck;
   const cardIds = deck.card_ids;
   const card = getNextCard(props.curCardIndex, cardIds);
+  
   //const [state, dispatch] = useReducer(rootReducerCombined, initialStateCombined);
   // const flashcards = deck.card_ids.map((card_id) => {
   //   const FlashcardProps = SAMPLE_FLASHCARDS.find(
