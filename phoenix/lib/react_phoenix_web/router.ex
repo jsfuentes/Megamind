@@ -28,10 +28,10 @@ defmodule ReactPhoenixWeb.Router do
     pipe_through :api
 
     get "/", ApiController, :index
-    post "/join", ApiController, :join
     get "/users/me", UserController, :me
     resources "/users", UserController, except: [:new, :edit]
     resources "/decks", DeckController, except: [:new, :edit]
+    resources "/cards", CardController, except: [:new, :edit]
     get "/*path", ApiController, :not_found
     post "/*path", ApiController, :not_found
   end

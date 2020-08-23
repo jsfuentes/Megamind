@@ -6,6 +6,7 @@ defmodule ReactPhoenix.Decks.Deck do
     field :picture, :string
     field :title, :string
     belongs_to :user, ReactPhoenix.Accounts.User
+    has_many :card, ReactPhoenix.Decks.Card
 
     timestamps()
   end
