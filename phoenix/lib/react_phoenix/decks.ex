@@ -123,6 +123,10 @@ defmodule ReactPhoenix.Decks do
     Repo.all(Card)
   end
 
+  def list_cards(deck_id) do
+    Repo.all(from c in Card, where: c.deck_id == ^deck_id, order_by: [desc: c.inserted_at])
+  end
+
   @doc """
   Gets a single card.
 
