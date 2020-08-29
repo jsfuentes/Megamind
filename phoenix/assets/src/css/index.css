@@ -10,8 +10,8 @@ body {
   line-height: 1.0625; /* The height Apple used to tighten up the spacing a bit. */
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -79,10 +79,6 @@ body {
 .reactionContainer {
   display: flex;
   flex-direction: horizontal;
-}
-
-.card-nuts {
-  display: flex;
 }
 
 @tailwind components;

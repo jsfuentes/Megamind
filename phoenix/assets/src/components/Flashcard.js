@@ -35,7 +35,7 @@ export default function Flashcard(props) {
   }
 
   return (
-    <div className="card-nuts">
+    <div className="flex flex-col">
       <div
         className="w-128 h-88 relative"
         onClick={() => {
@@ -74,7 +74,7 @@ export default function Flashcard(props) {
         </a.div>
       </div>
       <a.div
-        className={"reactionContainer"}
+        className={"reactionContainer flex flex-row justify-between mt-5"}
         style={{
           opacity: opacity,
           visibility: opacity.interpolate((o) =>
