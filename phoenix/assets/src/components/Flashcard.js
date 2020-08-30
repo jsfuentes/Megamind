@@ -47,6 +47,7 @@ export default function Flashcard(props) {
     const resp = await axios.post(`/api/cards/${props.card.id}/answer?q=${q}`);
     const newCards = resp.data.data;
     debug("Got cards", newCards);
+    console.log("calling refresh cards");
     props.refreshCards();
   }
 

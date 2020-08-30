@@ -27,31 +27,25 @@ export default function Deck(props) {
   const [cards, setCards] = useState([]);
   const { id } = props.match.params;
   const [deckComplete, setDeckComplete] = useState(false);
-  let pageLoaded = false;
+  const [pageLoaded, setPageLoaded] = useState(false);
 
   async function refreshCards(deck_id) {
     let did = deck_id ? deck_id : deck.id;
     const resp = await axios.get(`/api/cards?deck_id=${did}`);
     const newCards = resp.data.data;
     debug("Got cards", newCards);
-    // if (pageLoaded && isDeckComplete()) {
-    //   setDeckComplete((s) => !s);
-    // } else {
-    //   setCards(newCards);
-    // }
-    // pageLoaded = true;
-    // console.log("nutts");
-    // console.log(pageLoaded);
-    // console.log(isDeckComplete());
+    if (pageLoaded && isDeckComplete()) {
+      setDeckComplete((s) => !s);
+    } else {
+      setCards(newCards);
+    }
+    setPageLoaded(true);
     setCards(newCards);
   }
 
-  // function isDeckComplete() {
-  //   console.log(cards.length - currentCards.length == 0);
-  //   console.log(cards.length);
-  //   console.log(currentCards.length);
-  //   return cards.length - currentCards.length == 0;
-  // }
+  function isDeckComplete() {
+    return currentCards.length == 1;
+  }
 
   useEffect(() => {
     async function f() {
@@ -104,7 +98,7 @@ export default function Deck(props) {
             />
             <Button onClick={addCard}>Add Card</Button>
           </div>
-          {!deckComplete ? (
+          {deckComplete ? (
             <EndScreen/>
           ) : (
           <div className="text-white w-full flex items-center justify-center">
