@@ -18,6 +18,7 @@ defmodule ReactPhoenixWeb.DeckView do
       id: deck.id,
       title: deck.title,
       picture: deck.picture,
+      current_session: deck.current_session,
       inserted_at: deck.inserted_at,
       user: render_one(user, ReactPhoenixWeb.UserView, "public.json")
     }

@@ -63,6 +63,10 @@ export default function Deck(props) {
     return null;
   }
 
+  const currentCards = cards.filter(
+    (c) => c.next_session === deck.current_session
+  );
+
   return (
     <div>
       <Header />
@@ -70,14 +74,17 @@ export default function Deck(props) {
         <div className={"text-3xl container mx-auto"}>
           <div className="w-full py-6 flex flex-row justify-between">
             <div className="text-black text-3xl my-2">{deck.title}</div>
-            <ProgressBar />
+            <ProgressBar
+              current={cards.length - currentCards.length}
+              total={cards.length}
+            />
             <Button onClick={addCard}>Add Card</Button>
           </div>
           <div className="text-white w-full flex items-center justify-center">
-            {cards.length > 0 ? (
+            {currentCards.length > 0 ? (
               <Flashcard
-                key={cards[0].id}
-                card={cards[0]}
+                key={currentCards[0].id}
+                card={currentCards[0]}
                 refreshCards={refreshCards}
               />
             ) : (

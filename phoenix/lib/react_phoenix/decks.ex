@@ -128,7 +128,7 @@ defmodule ReactPhoenix.Decks do
         join: d in Deck,
         on: d.id == c.deck_id,
         where: c.deck_id == ^deck_id,
-        where: d.current_session == c.next_session,
+        # where: d.current_session == c.next_session,
         order_by: [desc: c.inserted_at]
     )
   end
