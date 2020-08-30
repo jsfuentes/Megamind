@@ -11,7 +11,7 @@ defmodule ReactPhoenixWeb.Supermemo do
 
     if q < 3 do
       card
-      |> Map.put(:next_session, current_session + 1)
+      |> Map.put(:next_session, current_session)
       |> Map.put(:session_interval, 1)
       |> Map.put(:successful_session_count, 0)
     else
