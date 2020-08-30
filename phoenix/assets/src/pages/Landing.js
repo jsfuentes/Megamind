@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { axios } from "src/utils/utils.js";
 import logoImg from "src/img/logo.png";
 import Header from "src/components/Header";
+import HappyGif from "src/components/HappyGif";
 import GoogleButton from "src/components/GoogleButton";
 const debug = require("debug")("app:Landing");
 
@@ -20,6 +21,7 @@ export default function Landing() {
             </div>
           </div>
 
+          <HappyGif />
           <div className="text-black my-4 text-lg">A memory application</div>
           <GoogleButton route="/dashboard">Login With Google</GoogleButton>
         </div>

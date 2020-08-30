@@ -26,25 +26,13 @@ export default function Deck(props) {
   const [deck, setDeck] = useState(null);
   const [cards, setCards] = useState([]);
   const { id } = props.match.params;
-  const [deckComplete, setDeckComplete] = useState(false);
-  const [pageLoaded, setPageLoaded] = useState(false);
 
   async function refreshCards(deck_id) {
     let did = deck_id ? deck_id : deck.id;
     const resp = await axios.get(`/api/cards?deck_id=${did}`);
     const newCards = resp.data.data;
     debug("Got cards", newCards);
-    if (pageLoaded && isDeckComplete()) {
-      setDeckComplete((s) => !s);
-    } else {
-      setCards(newCards);
-    }
-    setPageLoaded(true);
     setCards(newCards);
-  }
-
-  function isDeckComplete() {
-    return currentCards.length == 1;
   }
 
   useEffect(() => {
@@ -84,7 +72,8 @@ export default function Deck(props) {
   const currentCards = shuffle(cards).filter(
     (c) => c.next_session === deck.current_session
   );
-
+  const deckComplete = currentCards.length === 0 && cards.length > 0;
+  debug({ cards, currentCards, deckComplete });
   return (
     <div>
       <Header />
@@ -99,22 +88,23 @@ export default function Deck(props) {
             <Button onClick={addCard}>Add Card</Button>
           </div>
           {deckComplete ? (
-            <EndScreen/>
+            <EndScreen />
           ) : (
-          <div className="text-white w-full flex items-center justify-center">
-            {currentCards.length > 0 ? (
-              <Flashcard
-                key={currentCards[0].id}
-                card={currentCards[0]}
-                refreshCards={refreshCards}
-                onDeckComplete={() => onDeckComplete(setDeckComplete)}
-              />
-            ) : (
-              <div className="text-3xl text-blue-900 font-semibold mt-4">
-                Try adding a card
-              </div>
-            )}
-          </div>)}
+            <div className="text-white w-full flex items-center justify-center">
+              {currentCards.length > 0 ? (
+                <Flashcard
+                  key={currentCards[0].id}
+                  card={currentCards[0]}
+                  refreshCards={refreshCards}
+                  onDeckComplete={() => onDeckComplete(setDeckComplete)}
+                />
+              ) : (
+                <div className="text-3xl text-blue-900 font-semibold mt-4">
+                  Try adding a card
+                </div>
+              )}
+            </div>
+          )}
         </div>
       ) : (
         <Loading full={true} />
@@ -124,7 +114,7 @@ export default function Deck(props) {
 }
 
 function shuffle(array) {
-  var currentIndex = array.length,
+  let currentIndex = array.length,
     temporaryValue,
     randomIndex;
 

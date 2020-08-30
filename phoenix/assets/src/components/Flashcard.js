@@ -20,31 +20,39 @@ export default function Flashcard(props) {
     transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
     config: { mass: 5, tension: 500, friction: 80 },
   });
+  const [card, setCard] = useState(props.card);
 
-  function startEdit(e) {
-    debug("startEdit ");
-    console.log(e);
-    e.stopPropagation();
+  function startEdit() {
+    debug("startEdit");
     setEdit(true);
   }
 
-  function saveCard(e) {
-    debug("saveCard ");
-
-    e.stopPropagation();
-    setEdit(false);
+  function saveCardCurry(key) {
+    return async (newText) => {
+      const newCard = { ...card };
+      newCard[key].text = newText;
+      debug("saveCard");
+      const resp = await axios.patch(`/api/cards/${card.id}`, {
+        card: newCard,
+      });
+      const respCard = resp.data.data;
+      debug("Edited card", respCard);
+      setCard(respCard);
+      setEdit(false);
+    };
   }
 
-  function deleteCard(e) {
-    debug("deleteCard ");
-
-    e.stopPropagation();
+  async function deleteCard() {
+    debug("deleteCard");
+    const resp = await axios.delete(`/api/cards/${card.id}`);
+    debug("Deleted card", resp);
     setEdit(false);
+    props.refreshCards();
   }
 
   async function answerCard(q) {
-    debug("Card", `/api/cards/${props.card.id}/answer?q=${q}`);
-    const resp = await axios.post(`/api/cards/${props.card.id}/answer?q=${q}`);
+    debug("Card", `/api/cards/${card.id}/answer?q=${q}`);
+    const resp = await axios.post(`/api/cards/${card.id}/answer?q=${q}`);
     const newCards = resp.data.data;
     debug("Got cards", newCards);
     console.log("calling refresh cards");
@@ -68,10 +76,10 @@ export default function Flashcard(props) {
         >
           <FlashCardSide
             title="Question"
-            text={props.card.front.text}
+            text={card.front.text}
             edit={edit}
             startEdit={startEdit}
-            saveCard={saveCard}
+            saveCard={saveCardCurry("front")}
             deleteCard={deleteCard}
           />
         </a.div>
@@ -84,10 +92,10 @@ export default function Flashcard(props) {
         >
           <FlashCardSide
             title="Answer"
-            text={props.card.back.text}
+            text={card.back.text}
             edit={edit}
             startEdit={startEdit}
-            saveCard={saveCard}
+            saveCard={saveCardCurry("back")}
             deleteCard={deleteCard}
           />
         </a.div>
@@ -134,24 +142,29 @@ FlashCardSide.propTypes = {
 };
 
 function FlashCardSide(props) {
-    const titleRef = useRef();
-    const descRef = useRef();
-  
+  const [text, setText] = useState(props.text);
+
   return (
-    <div className="w-full h-full py-4 px-8 relative">
+    <div className="w-full h-full py-4 px-8 relative flex flex-col">
       {props.edit ? (
         <>
           <div
             className="absolute text-white z-10"
             style={{ top: 4, left: 4 }}
-            onClick={props.saveCard}
+            onClick={(e) => {
+              e.stopPropagation();
+              props.deleteCard();
+            }}
           >
             <Trash />
           </div>
           <div
             className="absolute text-white z-10"
             style={{ top: 4, right: 4 }}
-            onClick={props.deleteCard}
+            onClick={(e) => {
+              e.stopPropagation();
+              props.saveCard(text);
+            }}
           >
             <Save />
           </div>
@@ -160,13 +173,25 @@ function FlashCardSide(props) {
         <div
           className="absolute text-white z-10"
           style={{ top: 4, right: 4 }}
-          onClick={props.startEdit}
+          onClick={(e) => {
+            e.stopPropagation();
+            props.startEdit();
+          }}
         >
           <Edit />
         </div>
       )}
-      <div className="text-3xl font-bold py-3" contentEditable={props.edit} ref={titleRef}>{props.title}</div>
-      <div ref={descRef} contentEditable={props.edit}>{props.text}</div>
+      <div className="text-3xl font-bold py-3">{props.title}</div>
+      {props.edit ? (
+        <textarea
+          type="text"
+          className="text-3xl font-bold py-3 text-black w-full bg-inherit mb-4"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+      ) : (
+        <div className="text-3xl font-bold py-3">{props.text}</div>
+      )}
     </div>
   );
 }
