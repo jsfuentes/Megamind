@@ -8,7 +8,7 @@ import Flashcard from "src/components/Flashcard";
 import Header from "src/components/Header";
 import Loading from "src/components/Loading";
 import Button from "src/components/Button";
-import ProgressBar from '../components/ProgressBar'
+import ProgressBar from "../components/ProgressBar";
 
 const debug = require("debug")("app:Deck");
 
@@ -26,24 +26,25 @@ export default function Deck(props) {
   const [cards, setCards] = useState([]);
   const { id } = props.match.params;
 
+  async function refreshCards(deck_id) {
+    let did = deck_id ? deck_id : deck.id;
+    const resp = await axios.get(`/api/cards?deck_id=${did}`);
+    const newCards = resp.data.data;
+    debug("Got cards", newCards);
+    setCards(newCards);
+  }
+
   useEffect(() => {
     async function f() {
       const resp = await axios.get(`/api/decks/${id}`);
       const newDeck = resp.data.data;
       debug("Got deck", newDeck);
       setDeck(newDeck);
-      getCards(newDeck.id);
+      refreshCards(newDeck.id);
     }
 
     f();
   }, []);
-
-  async function getCards(deck_id) {
-    const resp = await axios.get(`/api/cards?deck_id=${deck_id}`);
-    const newCards = resp.data.data;
-    debug("Got cards", newCards);
-    setCards(newCards);
-  }
 
   async function addCard() {
     const resp = await axios.post(`/api/cards`, {
@@ -55,7 +56,7 @@ export default function Deck(props) {
     });
     const newCard = resp.data.data;
     debug("Got card", newCard);
-    getCards(deck.id);
+    refreshCards(deck.id);
   }
 
   if (deck === null) {
@@ -76,10 +77,8 @@ export default function Deck(props) {
             {cards.length > 0 ? (
               <Flashcard
                 key={cards[0].id}
-                FrontTitle={cards[0].FrontTitle}
-                FrontText={cards[0].FrontText}
-                BackTitle={cards[0].BackTitle}
-                BackText={cards[0].BackText}
+                card={cards[0]}
+                refreshCards={refreshCards}
               />
             ) : (
               <div className="text-3xl text-blue-900 font-semibold mt-4">

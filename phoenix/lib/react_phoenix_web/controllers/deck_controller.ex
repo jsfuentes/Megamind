@@ -22,6 +22,7 @@ defmodule ReactPhoenixWeb.DeckController do
     payload =
       deck_params
       |> Map.put("user_id", user_id)
+      |> Map.put("current_session", 1)
 
     IO.inspect(payload)
 

@@ -5,6 +5,7 @@ defmodule ReactPhoenix.Decks.Deck do
   schema "decks" do
     field :picture, :string
     field :title, :string
+    field :current_session, :integer
     belongs_to :user, ReactPhoenix.Accounts.User
     has_many :card, ReactPhoenix.Decks.Card
 

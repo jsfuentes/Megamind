@@ -33,6 +33,7 @@ defmodule ReactPhoenixWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/decks", DeckController, except: [:new, :edit]
     resources "/cards", CardController, except: [:new, :edit]
+    post "/cards/:id/answer", CardController, :answer
     get "/*path", ApiController, :not_found
     post "/*path", ApiController, :not_found
   end

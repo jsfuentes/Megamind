@@ -7,6 +7,7 @@ defmodule ReactPhoenix.Decks do
   alias ReactPhoenix.Repo
 
   alias ReactPhoenix.Decks.Deck
+  alias ReactPhoenix.Decks.Card
 
   @doc """
   Returns the list of decks.
@@ -108,8 +109,6 @@ defmodule ReactPhoenix.Decks do
     Deck.changeset(deck, %{})
   end
 
-  alias ReactPhoenix.Decks.Card
-
   @doc """
   Returns the list of cards.
 
@@ -124,7 +123,14 @@ defmodule ReactPhoenix.Decks do
   end
 
   def list_cards(deck_id) do
-    Repo.all(from c in Card, where: c.deck_id == ^deck_id, order_by: [desc: c.inserted_at])
+    Repo.all(
+      from c in Card,
+        join: d in Deck,
+        on: d.id == c.deck_id,
+        where: c.deck_id == ^deck_id,
+        where: d.current_session == c.next_session,
+        order_by: [desc: c.inserted_at]
+    )
   end
 
   @doc """

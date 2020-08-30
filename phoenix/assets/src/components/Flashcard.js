@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSpring, animated as a } from "react-spring";
 import { Edit, Save, Trash } from "react-feather";
-import Button from "../components/Button";
+
+import Button from "src/components/Button";
+import { axios } from "src/utils/utils.js";
+
+Flashcard.propTypes = {
+  card: PropTypes.object,
+  refreshCards: PropTypes.func,
+};
 
 const debug = require("debug")("app:FlashCard");
 export default function Flashcard(props) {
@@ -34,6 +41,14 @@ export default function Flashcard(props) {
     setEdit(false);
   }
 
+  async function answerCard(q) {
+    debug("Card", `/api/cards/${props.card.id}/answer?q=${q}`);
+    const resp = await axios.post(`/api/cards/${props.card.id}/answer?q=${q}`);
+    const newCards = resp.data.data;
+    debug("Got cards", newCards);
+    props.refreshCards();
+  }
+
   return (
     <div className="flex flex-col">
       <div
@@ -49,7 +64,7 @@ export default function Flashcard(props) {
         >
           <FlashCardSide
             title="Question"
-            text={props.FrontText}
+            text={props.card.front.text}
             edit={edit}
             startEdit={startEdit}
             saveCard={saveCard}
@@ -65,7 +80,7 @@ export default function Flashcard(props) {
         >
           <FlashCardSide
             title="Answer"
-            text={props.BackText}
+            text={props.card.back.text}
             edit={edit}
             startEdit={startEdit}
             saveCard={saveCard}
@@ -82,26 +97,22 @@ export default function Flashcard(props) {
           ),
         }}
       >
-        <Button
-          onClick={() => props.notifyReactionClicked()}
-          variant="pink"
-          size="large"
-        >
+        <Button onClick={() => answerCard(0)} variant="pink" size="large">
           1
         </Button>
-        <Button variant="pink" size="large">
+        <Button onClick={() => answerCard(1)} variant="pink" size="large">
           2
         </Button>
-        <Button variant="pink" size="large">
+        <Button onClick={() => answerCard(2)} variant="pink" size="large">
           3
         </Button>
-        <Button variant="pink" size="large">
+        <Button onClick={() => answerCard(3)} variant="pink" size="large">
           4
         </Button>
-        <Button variant="pink" size="large">
+        <Button onClick={() => answerCard(4)} variant="pink" size="large">
           5
         </Button>
-        <Button variant="pink" size="large">
+        <Button onClick={() => answerCard(5)} variant="pink" size="large">
           6
         </Button>
       </a.div>
