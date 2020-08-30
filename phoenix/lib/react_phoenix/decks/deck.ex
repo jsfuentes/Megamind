@@ -15,7 +15,7 @@ defmodule ReactPhoenix.Decks.Deck do
   @doc false
   def changeset(deck, attrs) do
     deck
-    |> cast(attrs, [:title, :picture, :user_id])
+    |> cast(attrs, [:title, :picture, :user_id, :current_session])
     |> validate_required([:title])
   end
 end

@@ -57,6 +57,7 @@ export default function Flashcard(props) {
     debug("Got cards", newCards);
     console.log("calling refresh cards");
     props.refreshCards();
+    setFlipped(false);
   }
 
   return (

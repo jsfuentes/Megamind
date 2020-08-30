@@ -33,7 +33,7 @@ defmodule ReactPhoenixWeb.Supermemo do
           |> Map.put(:session_interval, 6)
 
         _ ->
-          session_interval = card.session_interval * easiness_factor
+          session_interval = Kernel.max(Kernel.floor(card.session_interval * easiness_factor), 1)
 
           card
           |> Map.put(:next_session, current_session + session_interval)
