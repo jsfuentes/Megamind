@@ -81,5 +81,9 @@ body {
   flex-direction: horizontal;
 }
 
+.card-face {
+  backface-visibility: hidden;
+}
+
 @tailwind components;
 @tailwind utilities;
