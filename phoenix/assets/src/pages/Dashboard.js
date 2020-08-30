@@ -8,7 +8,7 @@ import Header from "src/components/Header";
 import UserContext from "src/contexts/UserContext";
 import CreateDeck from "src/components/CreateDeck";
 import { axios } from "src/utils/utils.js";
-import EndScreen from "../components/EndScreen";
+import EndScreen from "./EndScreen";
 
 const debug = require("debug")("app:Dashboard");
 
@@ -44,8 +44,6 @@ export default function Dashboard() {
             <div className="w-1 h-1" />
             <CreateDeck />
           </div>
-          <h1> Hello {user && user.name} </h1>
-          <h3>Decks</h3>
           <div className="grid grid-cols-3">
             {Object.entries(decks).map(([id, value]) => {
               return (
