@@ -9,6 +9,7 @@ import Header from "src/components/Header";
 import Loading from "src/components/Loading";
 import Button from "src/components/Button";
 import ProgressBar from "../components/ProgressBar";
+import EndScreen from "../components/EndScreen";
 
 const debug = require("debug")("app:Deck");
 
@@ -25,14 +26,32 @@ export default function Deck(props) {
   const [deck, setDeck] = useState(null);
   const [cards, setCards] = useState([]);
   const { id } = props.match.params;
+  const [deckComplete, setDeckComplete] = useState(false);
+  let pageLoaded = false;
 
   async function refreshCards(deck_id) {
     let did = deck_id ? deck_id : deck.id;
     const resp = await axios.get(`/api/cards?deck_id=${did}`);
     const newCards = resp.data.data;
     debug("Got cards", newCards);
+    // if (pageLoaded && isDeckComplete()) {
+    //   setDeckComplete((s) => !s);
+    // } else {
+    //   setCards(newCards);
+    // }
+    // pageLoaded = true;
+    // console.log("nutts");
+    // console.log(pageLoaded);
+    // console.log(isDeckComplete());
     setCards(newCards);
   }
+
+  // function isDeckComplete() {
+  //   console.log(cards.length - currentCards.length == 0);
+  //   console.log(cards.length);
+  //   console.log(currentCards.length);
+  //   return cards.length - currentCards.length == 0;
+  // }
 
   useEffect(() => {
     async function f() {
@@ -59,6 +78,11 @@ export default function Deck(props) {
     refreshCards(deck.id);
   }
 
+  function onDeckComplete(setDeckComplete) {
+    console.log(setDeckComplete);
+    setDeckComplete((s) => !s);
+  }
+
   if (deck === null) {
     return null;
   }
@@ -80,19 +104,23 @@ export default function Deck(props) {
             />
             <Button onClick={addCard}>Add Card</Button>
           </div>
+          {!deckComplete ? (
+            <EndScreen/>
+          ) : (
           <div className="text-white w-full flex items-center justify-center">
             {currentCards.length > 0 ? (
               <Flashcard
                 key={currentCards[0].id}
                 card={currentCards[0]}
                 refreshCards={refreshCards}
+                onDeckComplete={() => onDeckComplete(setDeckComplete)}
               />
             ) : (
               <div className="text-3xl text-blue-900 font-semibold mt-4">
                 Try adding a card
               </div>
             )}
-          </div>
+          </div>)}
         </div>
       ) : (
         <Loading full={true} />

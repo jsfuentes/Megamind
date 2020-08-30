@@ -165,7 +165,7 @@ function FlashCardSide(props) {
         </div>
       )}
       <div className="text-3xl font-bold py-3" contentEditable={props.edit} ref={titleRef}>{props.title}</div>
-      <div ref={descRef}>{props.text}</div>
+      <div ref={descRef} contentEditable={props.edit}>{props.text}</div>
     </div>
   );
 }
