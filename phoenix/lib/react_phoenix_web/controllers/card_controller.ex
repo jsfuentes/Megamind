@@ -17,7 +17,6 @@ defmodule ReactPhoenixWeb.CardController do
     payload =
       card_params
       |> Map.put("easiness_factor", 2.5)
-      |> Map.put("next_session", 1)
       |> Map.put("session_interval", 1)
       |> Map.put("successful_session_count", 0)
 

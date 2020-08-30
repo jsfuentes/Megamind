@@ -13,15 +13,6 @@ import EndScreen from "../components/EndScreen";
 
 const debug = require("debug")("app:Deck");
 
-const card = {
-  id: 4,
-  FrontTitle: "Question",
-  FrontText: "What is Acute lymphoblastic leukaemia",
-  BackTitle: "Answer",
-  BackText:
-    "Leukaemia is cancer of the white blood cells. Acute leukaemia means the condition progresses rapidly and aggressively and requires immediate treatment.",
-};
-
 export default function Deck(props) {
   const [deck, setDeck] = useState(null);
   const [cards, setCards] = useState([]);
@@ -35,16 +26,16 @@ export default function Deck(props) {
     setCards(newCards);
   }
 
-  useEffect(() => {
-    async function f() {
-      const resp = await axios.get(`/api/decks/${id}`);
-      const newDeck = resp.data.data;
-      debug("Got deck", newDeck);
-      setDeck(newDeck);
-      refreshCards(newDeck.id);
-    }
+  async function refreshDeck() {
+    const resp = await axios.get(`/api/decks/${id}`);
+    const newDeck = resp.data.data;
+    debug("Got deck", newDeck);
+    setDeck(newDeck);
+    refreshCards(newDeck.id);
+  }
 
-    f();
+  useEffect(() => {
+    refreshDeck();
   }, []);
 
   async function addCard() {
@@ -53,6 +44,7 @@ export default function Deck(props) {
         front: { text: "" },
         back: { text: "" },
         deck_id: deck.id,
+        next_session: deck.current_session,
       },
     });
     const newCard = resp.data.data;
@@ -60,9 +52,13 @@ export default function Deck(props) {
     refreshCards(deck.id);
   }
 
-  function onDeckComplete(setDeckComplete) {
-    console.log(setDeckComplete);
-    setDeckComplete((s) => !s);
+  async function nextSession() {
+    const newDeck = { ...deck, current_session: deck.current_session + 1 };
+    const resp = await axios.patch(`/api/decks/${deck.id}`, {
+      deck: newDeck,
+    });
+    debug("Next session", resp);
+    refreshDeck();
   }
 
   if (deck === null) {
@@ -70,7 +66,7 @@ export default function Deck(props) {
   }
 
   const currentCards = shuffle(cards).filter(
-    (c) => c.next_session === deck.current_session
+    (c) => c.next_session <= deck.current_session
   );
   const deckComplete = currentCards.length === 0 && cards.length > 0;
   debug({ cards, currentCards, deckComplete });
@@ -88,7 +84,7 @@ export default function Deck(props) {
             <Button onClick={addCard}>Add Card</Button>
           </div>
           {deckComplete ? (
-            <EndScreen />
+            <EndScreen nextSession={nextSession} />
           ) : (
             <div className="text-white w-full flex items-center justify-center">
               {currentCards.length > 0 ? (
@@ -96,7 +92,6 @@ export default function Deck(props) {
                   key={currentCards[0].id}
                   card={currentCards[0]}
                   refreshCards={refreshCards}
-                  onDeckComplete={() => onDeckComplete(setDeckComplete)}
                 />
               ) : (
                 <div className="text-3xl text-blue-900 font-semibold mt-4">
