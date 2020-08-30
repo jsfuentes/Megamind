@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { useSpring, animated as a } from "react-spring";
 import { Edit, Save, Trash } from "react-feather";
@@ -23,6 +23,7 @@ export default function Flashcard(props) {
 
   function startEdit(e) {
     debug("startEdit ");
+    console.log(e);
     e.stopPropagation();
     setEdit(true);
   }
@@ -54,12 +55,14 @@ export default function Flashcard(props) {
       <div
         className="w-128 h-88 relative"
         onClick={() => {
-          setFlipped((state) => !state);
-          debug("FLIP");
+          if (!edit) {
+            setFlipped((state) => !state);
+            debug("FLIP");
+          }
         }}
       >
         <a.div
-          className="c back w-full h-full"
+          className="c back w-full h-full card-face"
           style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}
         >
           <FlashCardSide
@@ -72,7 +75,7 @@ export default function Flashcard(props) {
           />
         </a.div>
         <a.div
-          className="c front w-full h-full"
+          className="c front w-full h-full card-face"
           style={{
             opacity,
             transform: transform.interpolate((t) => `${t} rotateX(180deg)`),
@@ -130,6 +133,9 @@ FlashCardSide.propTypes = {
 };
 
 function FlashCardSide(props) {
+    const titleRef = useRef();
+    const descRef = useRef();
+  
   return (
     <div className="w-full h-full py-4 px-8 relative">
       {props.edit ? (
@@ -158,8 +164,8 @@ function FlashCardSide(props) {
           <Edit />
         </div>
       )}
-      <div className="text-3xl font-bold py-3">{props.title}</div>
-      <div>{props.text}</div>
+      <div className="text-3xl font-bold py-3" contentEditable={props.edit} ref={titleRef}>{props.title}</div>
+      <div ref={descRef}>{props.text}</div>
     </div>
   );
 }
