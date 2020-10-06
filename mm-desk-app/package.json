@@ -10,7 +10,7 @@
   "author": "Arjun Sridhar",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^9.1.2"
+    "electron": "^9.3.1"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
